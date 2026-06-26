@@ -37,29 +37,72 @@ export default function LiveScoreBanner({ matchId }: { matchId: string }) {
 
   if (!score) {
     return (
-      <div className="text-center py-8 rounded-xl bg-gray-900 border border-red-900 mb-8 animate-pulse">
-        <p className="text-red-400 font-bold">LIVE — загрузка счёта...</p>
+      <div className="relative rounded-2xl bg-card border border-live/30 overflow-hidden mb-8">
+        <div
+          className="absolute inset-0 bg-gradient-to-b from-live/5 to-transparent pointer-events-none"
+          aria-hidden="true"
+        />
+        <div className="relative flex flex-col items-center justify-center py-10 gap-3">
+          <div className="inline-flex items-center gap-2 text-xs font-semibold text-live">
+            <span className="w-2 h-2 rounded-full bg-live animate-live-blink" />
+            LIVE
+          </div>
+          <div className="shimmer h-10 w-40 rounded-lg" />
+        </div>
       </div>
     );
   }
 
   return (
-    <div className="text-center py-8 rounded-xl bg-gray-900 border border-red-900 mb-8">
-      <p className="text-red-400 text-xs font-bold mb-4 tracking-widest">● LIVE</p>
-      <div className="flex items-center justify-center gap-8">
-        <div className="text-center">
-          <p className="font-bold text-lg">{score.team1.name}</p>
-          <p className="text-gray-500 text-sm">[{score.team1.tag}]</p>
+    <div className="relative rounded-2xl bg-card border border-live/30 overflow-hidden mb-8">
+      {/* Red glow overlay */}
+      <div
+        className="absolute inset-0 bg-gradient-to-b from-live/6 to-transparent pointer-events-none"
+        aria-hidden="true"
+      />
+
+      <div className="relative px-6 py-10">
+        {/* LIVE indicator */}
+        <div className="flex justify-center mb-6">
+          <span className="inline-flex items-center gap-2 text-xs font-bold text-live tracking-widest uppercase">
+            <span className="w-2 h-2 rounded-full bg-live animate-live-blink" />
+            Live
+          </span>
         </div>
-        <div className="text-5xl font-bold tabular-nums">
-          {score.team1Score} : {score.team2Score}
+
+        {/* Teams + score */}
+        <div className="flex items-center justify-center gap-4 sm:gap-10">
+          <div className="flex-1 text-right min-w-0">
+            <p className="text-xl sm:text-2xl font-bold text-prose break-words">
+              {score.team1.name}
+            </p>
+            <p className="text-muted text-sm font-mono mt-0.5">
+              [{score.team1.tag}]
+            </p>
+          </div>
+
+          <div className="shrink-0 text-center">
+            <p className="text-5xl sm:text-6xl font-bold tabular-nums text-prose tracking-tight">
+              {score.team1Score}
+              <span className="text-live mx-2">:</span>
+              {score.team2Score}
+            </p>
+          </div>
+
+          <div className="flex-1 text-left min-w-0">
+            <p className="text-xl sm:text-2xl font-bold text-prose break-words">
+              {score.team2.name}
+            </p>
+            <p className="text-muted text-sm font-mono mt-0.5">
+              [{score.team2.tag}]
+            </p>
+          </div>
         </div>
-        <div className="text-center">
-          <p className="font-bold text-lg">{score.team2.name}</p>
-          <p className="text-gray-500 text-sm">[{score.team2.tag}]</p>
-        </div>
+
+        <p className="text-center text-muted text-xs mt-6">
+          обновляется каждые 5 сек
+        </p>
       </div>
-      <p className="text-gray-600 text-xs mt-4">обновляется каждые 5 сек</p>
     </div>
   );
 }

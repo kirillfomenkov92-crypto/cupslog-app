@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
 const CS2_MAPS = ["de_dust2", "de_mirage", "de_inferno", "de_nuke", "de_overpass", "de_ancient", "de_anubis", "de_vertigo"];
 
@@ -15,6 +16,7 @@ export default function CreateMatchForm({ tournamentId, teams }: { tournamentId:
   const [scheduledAt, setScheduledAt] = useState("");
   const [loading, setLoading] = useState(false);
   const [open, setOpen] = useState(false);
+  const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
 
   function toggleMap(map: string) {
     setMapPool((prev) => prev.includes(map) ? prev.filter((m) => m !== map) : [...prev, map]);
@@ -22,7 +24,8 @@ export default function CreateMatchForm({ tournamentId, teams }: { tournamentId:
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (team1Id === team2Id) { alert("Команды должны быть разными"); return; }
+    setFieldErrors({});
+    if (team1Id === team2Id) { toast.error("Команды должны быть разными"); setFieldErrors({ team2Id: "Команды должны быть разными" }); return; }
     setLoading(true);
     try {
       const res = await fetch(`/api/tournaments/${tournamentId}/matches`, {
@@ -30,10 +33,16 @@ export default function CreateMatchForm({ tournamentId, teams }: { tournamentId:
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ team1Id, team2Id, format, mapPool, scheduledAt: scheduledAt || null }),
       });
-      if (!res.ok) throw new Error();
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        if (data.field) setFieldErrors({ [data.field]: data.error });
+        toast.error(data.error ?? "Ошибка при создании матча");
+        return;
+      }
       setTeam1Id(""); setTeam2Id(""); setFormat("BO1"); setMapPool([]); setScheduledAt("");
       setOpen(false);
       router.refresh();
+      toast.success("Матч создан");
     } finally {
       setLoading(false);
     }
@@ -55,24 +64,34 @@ export default function CreateMatchForm({ tournamentId, teams }: { tournamentId:
   return (
     <form onSubmit={handleSubmit} className="bg-gray-800 border border-gray-700 rounded-xl p-4 mt-3 flex flex-col gap-3">
       <div className="flex gap-3 flex-wrap">
-        <select value={team1Id} onChange={(e) => setTeam1Id(e.target.value)} required
-          className="bg-gray-700 border border-gray-600 rounded-lg px-3 py-1.5 text-sm focus:outline-none flex-1 min-w-[140px]">
-          <option value="">Команда 1</option>
-          {teams.map((t) => <option key={t.id} value={t.id}>{t.name} [{t.tag}]</option>)}
-        </select>
-        <select value={team2Id} onChange={(e) => setTeam2Id(e.target.value)} required
-          className="bg-gray-700 border border-gray-600 rounded-lg px-3 py-1.5 text-sm focus:outline-none flex-1 min-w-[140px]">
-          <option value="">Команда 2</option>
-          {teams.map((t) => <option key={t.id} value={t.id}>{t.name} [{t.tag}]</option>)}
-        </select>
+        <div className="flex flex-col gap-1 flex-1 min-w-[140px]">
+          <select value={team1Id} onChange={(e) => setTeam1Id(e.target.value)} required
+            aria-label="Команда 1"
+            className={`bg-gray-700 border rounded-lg px-3 py-1.5 text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 w-full ${fieldErrors.team1Id ? "border-red-500" : "border-gray-600"}`}>
+            <option value="">Команда 1</option>
+            {teams.map((t) => <option key={t.id} value={t.id}>{t.name} [{t.tag}]</option>)}
+          </select>
+          {fieldErrors.team1Id && <span className="text-red-400 text-xs">{fieldErrors.team1Id}</span>}
+        </div>
+        <div className="flex flex-col gap-1 flex-1 min-w-[140px]">
+          <select value={team2Id} onChange={(e) => setTeam2Id(e.target.value)} required
+            aria-label="Команда 2"
+            className={`bg-gray-700 border rounded-lg px-3 py-1.5 text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 w-full ${fieldErrors.team2Id ? "border-red-500" : "border-gray-600"}`}>
+            <option value="">Команда 2</option>
+            {teams.map((t) => <option key={t.id} value={t.id}>{t.name} [{t.tag}]</option>)}
+          </select>
+          {fieldErrors.team2Id && <span className="text-red-400 text-xs">{fieldErrors.team2Id}</span>}
+        </div>
         <select value={format} onChange={(e) => setFormat(e.target.value)}
-          className="bg-gray-700 border border-gray-600 rounded-lg px-3 py-1.5 text-sm focus:outline-none w-24">
+          aria-label="Формат матча"
+          className="bg-gray-700 border border-gray-600 rounded-lg px-3 py-1.5 text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 w-24">
           <option>BO1</option>
           <option>BO3</option>
           <option>BO5</option>
         </select>
         <input type="datetime-local" value={scheduledAt} onChange={(e) => setScheduledAt(e.target.value)}
-          className="bg-gray-700 border border-gray-600 rounded-lg px-3 py-1.5 text-sm focus:outline-none" />
+          aria-label="Время начала матча"
+          className="bg-gray-700 border border-gray-600 rounded-lg px-3 py-1.5 text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500" />
       </div>
 
       <div>

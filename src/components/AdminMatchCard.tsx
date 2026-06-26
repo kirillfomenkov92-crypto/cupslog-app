@@ -1,5 +1,7 @@
 "use client";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
 interface Team {
   id: string;
@@ -17,8 +19,10 @@ interface Match {
 }
 
 export default function AdminMatchCard({ match }: { match: Match }) {
+  const router = useRouter();
   const [downloading, setDownloading] = useState(false);
   const [updating, setUpdating] = useState(false);
+  const [deleting, setDeleting] = useState(false);
   const [status, setStatus] = useState(match.status);
   const [winnerId, setWinnerId] = useState("");
 
@@ -39,15 +43,36 @@ export default function AdminMatchCard({ match }: { match: Match }) {
     }
   }
 
+  async function deleteMatch() {
+    if (!window.confirm(`Удалить матч «${match.team1.name} vs ${match.team2.name}»? Это действие необратимо.`)) return;
+    setDeleting(true);
+    try {
+      const res = await fetch(`/api/matches/${match.id}`, { method: "DELETE" });
+      if (!res.ok) {
+        toast.error("Ошибка при удалении матча");
+        return;
+      }
+      toast.success("Матч удалён");
+      router.refresh();
+    } finally {
+      setDeleting(false);
+    }
+  }
+
   async function updateMatch() {
     setUpdating(true);
     try {
-      await fetch(`/api/matches/${match.id}`, {
+      const res = await fetch(`/api/matches/${match.id}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ status, winnerId: winnerId || null }),
       });
-      alert("Сохранено");
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        toast.error(data.error ?? "Ошибка при сохранении");
+      } else {
+        toast.success("Сохранено");
+      }
     } finally {
       setUpdating(false);
     }
@@ -79,7 +104,8 @@ export default function AdminMatchCard({ match }: { match: Match }) {
         <select
           value={status}
           onChange={(e) => setStatus(e.target.value)}
-          className="text-xs bg-gray-800 border border-gray-700 rounded-lg px-2 py-1.5 focus:outline-none"
+          aria-label="Статус матча"
+          className="text-xs bg-gray-800 border border-gray-700 rounded-lg px-2 py-1.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
         >
           <option value="PENDING">PENDING</option>
           <option value="LIVE">LIVE</option>
@@ -91,7 +117,8 @@ export default function AdminMatchCard({ match }: { match: Match }) {
           <select
             value={winnerId}
             onChange={(e) => setWinnerId(e.target.value)}
-            className="text-xs bg-gray-800 border border-gray-700 rounded-lg px-2 py-1.5 focus:outline-none"
+            aria-label="Победитель"
+            className="text-xs bg-gray-800 border border-gray-700 rounded-lg px-2 py-1.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
           >
             <option value="">Выбрать победителя</option>
             <option value={match.team1.id}>{match.team1.name}</option>
@@ -105,6 +132,14 @@ export default function AdminMatchCard({ match }: { match: Match }) {
           className="text-xs bg-green-900 hover:bg-green-800 text-green-200 px-3 py-1.5 rounded-lg transition-colors disabled:opacity-50"
         >
           {updating ? "Сохраняется..." : "Сохранить"}
+        </button>
+
+        <button
+          onClick={deleteMatch}
+          disabled={deleting}
+          className="text-xs bg-red-900 hover:bg-red-800 text-red-200 px-3 py-1.5 rounded-lg transition-colors disabled:opacity-50 ml-auto"
+        >
+          {deleting ? "Удаляется..." : "Удалить"}
         </button>
       </div>
     </div>

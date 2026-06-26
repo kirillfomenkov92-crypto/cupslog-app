@@ -8,11 +8,14 @@ import CreateTeamForm from "@/components/CreateTeamForm";
 import CreateMatchForm from "@/components/CreateMatchForm";
 import TeamRoster from "@/components/TeamRoster";
 import TournamentStatusControl from "@/components/TournamentStatusControl";
+import DeleteTournamentButton from "@/components/DeleteTournamentButton";
+import ChangePasswordForm from "@/components/ChangePasswordForm";
 
 export default async function AdminPage() {
   const session = await getServerSession(authOptions);
   if ((session?.user as { role?: string })?.role !== "ADMIN") redirect("/login");
 
+  const insecureSecret = process.env.NEXTAUTH_SECRET === "change-this-to-a-random-secret-in-production";
   const tournaments = await prisma.tournament.findMany({
     orderBy: { startDate: "desc" },
     include: {
@@ -33,6 +36,10 @@ export default async function AdminPage() {
         <CreateTournamentForm />
       </section>
 
+      <section className="mb-12">
+        <ChangePasswordForm insecureSecret={insecureSecret} />
+      </section>
+
       <section>
         <h2 className="text-xl font-semibold mb-6">Турниры</h2>
         {tournaments.length === 0 && (
@@ -48,7 +55,10 @@ export default async function AdminPage() {
                   {new Date(t.startDate).toLocaleDateString("ru-RU")}
                 </p>
               </div>
-              <TournamentStatusControl id={t.id} status={t.status} />
+              <div className="flex items-center gap-2">
+                <TournamentStatusControl id={t.id} status={t.status} />
+                <DeleteTournamentButton id={t.id} name={t.name} />
+              </div>
             </div>
 
             {/* Teams section */}

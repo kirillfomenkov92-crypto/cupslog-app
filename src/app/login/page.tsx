@@ -31,22 +31,31 @@ export default function LoginPage() {
         className="bg-gray-900 border border-gray-800 rounded-xl p-8 w-full max-w-sm flex flex-col gap-4"
       >
         <h1 className="text-xl font-semibold text-center">Вход</h1>
-        {error && <p className="text-red-400 text-sm text-center">{error}</p>}
+        {error && (
+          <p role="alert" aria-live="polite" className="text-red-400 text-sm text-center">{error}</p>
+        )}
         <input
           type="email"
-          placeholder="Email"
+          name="email"
+          aria-label="Email"
+          placeholder="you@example.com"
+          autoComplete="email"
+          spellCheck={false}
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
-          className="bg-gray-800 border border-gray-700 rounded-lg px-4 py-2 text-sm focus:outline-none focus:border-gray-500"
+          className="bg-gray-800 border border-gray-700 rounded-lg px-4 py-2 text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus:border-gray-500"
         />
         <input
           type="password"
+          name="password"
+          aria-label="Пароль"
           placeholder="Пароль"
+          autoComplete="current-password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
-          className="bg-gray-800 border border-gray-700 rounded-lg px-4 py-2 text-sm focus:outline-none focus:border-gray-500"
+          className="bg-gray-800 border border-gray-700 rounded-lg px-4 py-2 text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus:border-gray-500"
         />
         <button
           type="submit"

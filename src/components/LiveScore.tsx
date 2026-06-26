@@ -35,12 +35,20 @@ export default function LiveScore({ matchId }: { matchId: string }) {
   }, [matchId]);
 
   if (!score) {
-    return <span className="text-red-400 text-sm px-2 animate-pulse">LIVE</span>;
+    return (
+      <span className="inline-flex items-center gap-1.5 text-xs font-semibold px-2 py-0.5 rounded-full bg-live/15 text-live">
+        <span className="w-1.5 h-1.5 rounded-full bg-live animate-live-blink" />
+        LIVE
+      </span>
+    );
   }
 
   return (
-    <span className="text-red-400 text-sm font-bold px-2">
-      {score.team1Score} : {score.team2Score}
+    <span className="inline-flex items-center gap-1.5">
+      <span className="w-1.5 h-1.5 rounded-full bg-live animate-live-blink shrink-0" />
+      <span className="text-base font-bold tabular-nums text-live">
+        {score.team1Score} : {score.team2Score}
+      </span>
     </span>
   );
 }
