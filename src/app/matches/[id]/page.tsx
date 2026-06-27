@@ -64,20 +64,19 @@ export default async function MatchPage({
   if (!match) notFound();
 
   return (
-    <div className="max-w-2xl mx-auto px-6 py-10">
-      {/* Status + format */}
-      <div className="flex items-center gap-3 mb-6 text-sm">
-        <span className="text-muted font-mono">{match.format}</span>
-        <span className="text-line-strong">·</span>
+    <div className="animate-page-in px-6 md:px-8 py-8 max-w-3xl">
+      {/* Status row */}
+      <div className="flex items-center gap-3 mb-6">
+        <span className="text-muted text-sm font-mono">{match.format}</span>
+        <span className="text-line-strong text-muted">·</span>
         <MatchStatusBadge status={match.status} />
       </div>
 
-      {/* ── Hero score block ──────────────────────────────────── */}
+      {/* ── Hero score block ─────────────────────────────────────── */}
       {match.status === "LIVE" ? (
         <LiveScoreBanner matchId={match.id} />
       ) : (
         <div className="relative rounded-2xl bg-card border border-line overflow-hidden mb-8">
-          {/* Accent gradient overlay */}
           <div
             className="absolute inset-0 bg-gradient-to-b from-accent/6 to-transparent pointer-events-none"
             aria-hidden="true"
@@ -93,9 +92,7 @@ export default async function MatchPage({
                 >
                   {match.team1.name}
                 </p>
-                <p className="text-muted text-sm font-mono mt-0.5">
-                  [{match.team1.tag}]
-                </p>
+                <p className="text-muted text-sm font-mono mt-0.5">[{match.team1.tag}]</p>
               </div>
 
               {/* Score */}
@@ -120,9 +117,7 @@ export default async function MatchPage({
                 >
                   {match.team2.name}
                 </p>
-                <p className="text-muted text-sm font-mono mt-0.5">
-                  [{match.team2.tag}]
-                </p>
+                <p className="text-muted text-sm font-mono mt-0.5">[{match.team2.tag}]</p>
               </div>
             </div>
 
@@ -135,7 +130,7 @@ export default async function MatchPage({
         </div>
       )}
 
-      {/* ── Maps ─────────────────────────────────────────────── */}
+      {/* ── Maps ─────────────────────────────────────────────────── */}
       {match.maps.length > 0 && (
         <div>
           <h2 className="text-lg font-semibold text-prose mb-3">Карты</h2>
@@ -145,10 +140,8 @@ export default async function MatchPage({
                 key={m.id}
                 className="flex items-center justify-between px-4 py-3 rounded-xl bg-card border border-line"
               >
-                <span className="text-sm font-medium text-prose">
-                  {m.mapName}
-                </span>
-                <span className="text-sm font-bold tabular-nums text-dim">
+                <span className="text-sm font-medium text-prose">{m.mapName}</span>
+                <span className="text-sm font-bold tabular-nums text-dim font-mono">
                   {m.team1Score} : {m.team2Score}
                 </span>
               </div>

@@ -3,7 +3,7 @@ import { Geist } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "sonner";
 import SessionProvider from "@/components/SessionProvider";
-import Navbar from "@/components/Navbar";
+import AppShell from "@/components/AppShell";
 
 const geist = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
 
@@ -19,13 +19,15 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="ru" className={`${geist.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col bg-canvas text-prose">
+      <body className="bg-canvas text-prose">
         <SessionProvider>
-          <a href="#main-content" className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:px-4 focus:py-2 focus:bg-blue-600 focus:text-white focus:rounded-lg">
+          <a
+            href="#main-content"
+            className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:px-4 focus:py-2 focus:bg-accent focus:text-white focus:rounded-lg"
+          >
             Перейти к содержимому
           </a>
-          <Navbar />
-          <main id="main-content" className="flex-1">{children}</main>
+          <AppShell>{children}</AppShell>
           <Toaster richColors theme="dark" position="bottom-right" />
         </SessionProvider>
       </body>

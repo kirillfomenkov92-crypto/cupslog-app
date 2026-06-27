@@ -19,12 +19,10 @@ export async function generateMetadata({
   const start = new Date(tournament.startDate).toLocaleDateString("ru-RU");
   return {
     title: `${tournament.name} — CupsLog`,
-    description:
-      tournament.description ?? `CS2 турнир ${tournament.name}, начало ${start}`,
+    description: tournament.description ?? `CS2 турнир ${tournament.name}, начало ${start}`,
     openGraph: {
       title: tournament.name,
-      description:
-        tournament.description ?? `CS2 турнир. Начало: ${start}`,
+      description: tournament.description ?? `CS2 турнир. Начало: ${start}`,
       type: "website",
     },
   };
@@ -44,13 +42,13 @@ function TournamentStatusBadge({ status }: { status: TournamentStatus }) {
   }
   if (status === "UPCOMING") {
     return (
-      <span className="inline-flex items-center gap-1.5 text-xs font-medium px-2.5 py-1 rounded-full bg-accent/10 text-accent shrink-0">
+      <span className="text-xs font-medium px-2.5 py-1 rounded-full bg-accent/10 text-accent shrink-0">
         Скоро
       </span>
     );
   }
   return (
-    <span className="inline-flex items-center gap-1.5 text-xs font-medium px-2.5 py-1 rounded-full bg-chip text-muted shrink-0">
+    <span className="text-xs font-medium px-2.5 py-1 rounded-full bg-chip text-muted shrink-0">
       Завершён
     </span>
   );
@@ -112,58 +110,52 @@ export default async function TournamentPage({
   if (!tournament) notFound();
 
   return (
-    <div className="max-w-4xl mx-auto px-6 py-10">
-      {/* ── Tournament Header ───────────────────────────────────── */}
-      <div className="relative mb-10 pb-8 border-b border-line">
-        {/* Subtle accent glow */}
+    <div className="animate-page-in px-6 md:px-8 py-8">
+      {/* ── Tournament Header ─────────────────────────────────────── */}
+      <div className="relative mb-8 pb-8 border-b border-line">
         <div
-          className="absolute -top-4 -left-6 w-72 h-40 bg-accent/5 rounded-full blur-3xl pointer-events-none"
+          className="absolute -top-4 -left-6 w-64 h-40 bg-accent/5 rounded-full blur-3xl pointer-events-none"
           aria-hidden="true"
         />
         <div className="relative flex items-start justify-between gap-4">
-          <div>
-            <h1 className="text-3xl font-bold tracking-tight text-prose mb-2">
+          <div className="min-w-0">
+            <h1 className="text-2xl font-bold tracking-tight text-prose mb-2 leading-tight">
               {tournament.name}
             </h1>
             {tournament.description && (
-              <p className="text-dim mb-3">{tournament.description}</p>
+              <p className="text-dim mb-3 text-sm">{tournament.description}</p>
             )}
             <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-muted">
               <span>{tournament.teams.length} команд</span>
               <span>{tournament.matches.length} матчей</span>
-              <span>
-                {new Date(tournament.startDate).toLocaleDateString("ru-RU")}
-              </span>
+              <span>{new Date(tournament.startDate).toLocaleDateString("ru-RU")}</span>
             </div>
           </div>
           <TournamentStatusBadge status={tournament.status as TournamentStatus} />
         </div>
       </div>
 
-      {/* ── Standings ──────────────────────────────────────────── */}
+      {/* ── Standings ────────────────────────────────────────────── */}
       <Standings teams={tournament.teams} matches={tournament.matches} />
 
-      {/* ── Matches ────────────────────────────────────────────── */}
-      <h2 className="text-xl font-semibold text-prose mb-4">Матчи</h2>
+      {/* ── Matches ──────────────────────────────────────────────── */}
+      <h2 className="text-lg font-semibold text-prose mb-4">Матчи</h2>
       {tournament.matches.length === 0 ? (
-        <p className="text-dim mb-8">
+        <p className="text-dim text-sm mb-8">
           Матчей пока нет.{" "}
-          <Link
-            href="/admin"
-            className="text-accent hover:text-accent-hover transition-colors"
-          >
+          <Link href="/admin" className="text-accent hover:text-accent-hover transition-colors">
             Добавь первый матч в админ-панели.
           </Link>
         </p>
       ) : (
-        <div className="grid gap-2.5 mb-10">
+        <div className="grid gap-2 mb-10">
           {tournament.matches.map((match) => (
             <Link
               key={match.id}
               href={`/matches/${match.id}`}
               className="group block p-4 rounded-xl bg-card border border-line hover:border-line-strong hover:-translate-y-0.5 transition-all duration-200"
             >
-              <div className="flex items-center gap-3 sm:gap-4">
+              <div className="flex items-center gap-3">
                 {/* Team 1 */}
                 <span
                   className={`flex-1 text-right font-semibold text-sm truncate transition-colors duration-150 ${
@@ -175,8 +167,8 @@ export default async function TournamentPage({
                   {match.team1.name}
                 </span>
 
-                {/* Score / vs */}
-                <div className="shrink-0 min-w-[72px] text-center">
+                {/* Score */}
+                <div className="shrink-0 min-w-[76px] text-center">
                   {match.status === "LIVE" ? (
                     <LiveScore matchId={match.id} />
                   ) : (
@@ -224,7 +216,7 @@ export default async function TournamentPage({
         </div>
       )}
 
-      {/* ── Bracket ────────────────────────────────────────────── */}
+      {/* ── Bracket ──────────────────────────────────────────────── */}
       <Bracket
         matches={tournament.matches.map((m) => ({
           ...m,
@@ -233,28 +225,21 @@ export default async function TournamentPage({
         }))}
       />
 
-      {/* ── Teams ──────────────────────────────────────────────── */}
-      <h2 className="text-xl font-semibold text-prose mb-4">
+      {/* ── Teams ────────────────────────────────────────────────── */}
+      <h2 className="text-lg font-semibold text-prose mb-4">
         Команды ({tournament.teams.length})
       </h2>
       {tournament.teams.length === 0 && (
-        <p className="text-dim mb-4">
+        <p className="text-dim text-sm mb-4">
           Команд пока нет.{" "}
-          <Link
-            href="/admin"
-            className="text-accent hover:text-accent-hover transition-colors"
-          >
+          <Link href="/admin" className="text-accent hover:text-accent-hover transition-colors">
             Добавь первую команду в админ-панели.
           </Link>
         </p>
       )}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
         {tournament.teams.map((team) => (
-          <div
-            key={team.id}
-            className="p-4 rounded-xl bg-card border border-line"
-          >
-            {/* Team header with initials avatar */}
+          <div key={team.id} className="p-4 rounded-xl bg-card border border-line">
             <div className="flex items-center gap-3 mb-3">
               <TeamInitials name={team.name} />
               <div className="min-w-0">
@@ -262,10 +247,8 @@ export default async function TournamentPage({
                 <span className="text-muted text-xs font-mono">{team.tag}</span>
               </div>
             </div>
-
-            {/* Players */}
             {team.players.length > 0 ? (
-              <div className="flex flex-col gap-1 pl-1 border-l-2 border-line ml-1">
+              <div className="flex flex-col gap-1 border-l-2 border-line pl-3 ml-1">
                 {team.players.map((p) => (
                   <div key={p.id} className="text-xs">
                     <span className="font-medium text-dim">{p.nickname}</span>

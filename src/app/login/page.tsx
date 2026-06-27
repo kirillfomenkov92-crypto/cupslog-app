@@ -8,15 +8,18 @@ export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setError("");
+    setLoading(true);
     const result = await signIn("credentials", {
       email,
       password,
       redirect: false,
     });
+    setLoading(false);
     if (result?.error) {
       setError("Неверный email или пароль");
     } else {
@@ -25,43 +28,67 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="flex items-center justify-center min-h-[calc(100vh-60px)]">
+    <div className="animate-page-in flex items-center justify-center min-h-[calc(100dvh-56px)] md:min-h-dvh px-4">
       <form
         onSubmit={handleSubmit}
-        className="bg-gray-900 border border-gray-800 rounded-xl p-8 w-full max-w-sm flex flex-col gap-4"
+        className="bg-card border border-line rounded-2xl p-8 w-full max-w-sm flex flex-col gap-4"
       >
-        <h1 className="text-xl font-semibold text-center">Вход</h1>
+        <div className="mb-1">
+          <h1 className="text-xl font-semibold text-prose text-center">Вход</h1>
+          <p className="text-dim text-sm text-center mt-1">CupsLog Admin</p>
+        </div>
+
         {error && (
-          <p role="alert" aria-live="polite" className="text-red-400 text-sm text-center">{error}</p>
+          <p
+            role="alert"
+            aria-live="polite"
+            className="text-live text-sm text-center bg-live/8 border border-live/20 rounded-lg px-3 py-2"
+          >
+            {error}
+          </p>
         )}
-        <input
-          type="email"
-          name="email"
-          aria-label="Email"
-          placeholder="you@example.com"
-          autoComplete="email"
-          spellCheck={false}
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-          className="bg-gray-800 border border-gray-700 rounded-lg px-4 py-2 text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus:border-gray-500"
-        />
-        <input
-          type="password"
-          name="password"
-          aria-label="Пароль"
-          placeholder="Пароль"
-          autoComplete="current-password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-          className="bg-gray-800 border border-gray-700 rounded-lg px-4 py-2 text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus:border-gray-500"
-        />
+
+        <div className="flex flex-col gap-1.5">
+          <label htmlFor="login-email" className="text-xs font-medium text-dim">
+            Email
+          </label>
+          <input
+            id="login-email"
+            type="email"
+            name="email"
+            placeholder="you@example.com"
+            autoComplete="email"
+            spellCheck={false}
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+            className="bg-raised border border-line rounded-lg px-4 py-2.5 text-sm text-prose placeholder:text-muted focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors"
+          />
+        </div>
+
+        <div className="flex flex-col gap-1.5">
+          <label htmlFor="login-password" className="text-xs font-medium text-dim">
+            Пароль
+          </label>
+          <input
+            id="login-password"
+            type="password"
+            name="password"
+            placeholder="••••••••"
+            autoComplete="current-password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+            className="bg-raised border border-line rounded-lg px-4 py-2.5 text-sm text-prose placeholder:text-muted focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors"
+          />
+        </div>
+
         <button
           type="submit"
-          className="bg-blue-600 hover:bg-blue-500 text-white rounded-lg px-4 py-2 text-sm font-medium transition-colors"
+          disabled={loading}
+          className="bg-accent hover:bg-accent-hover disabled:opacity-60 disabled:cursor-not-allowed text-white rounded-lg px-4 py-2.5 text-sm font-semibold transition-colors duration-150 mt-1 active:scale-[0.98]"
         >
-          Войти
+          {loading ? "Вхожу..." : "Войти"}
         </button>
       </form>
     </div>
