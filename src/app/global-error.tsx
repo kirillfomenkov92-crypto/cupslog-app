@@ -14,13 +14,15 @@ export default function GlobalError({
 
   return (
     <html lang="ru">
-      <body className="min-h-screen flex flex-col items-center justify-center bg-gray-950 text-gray-100">
-        <p className="text-6xl font-bold text-gray-700 mb-4">500</p>
-        <h1 className="text-2xl font-semibold mb-2">Критическая ошибка</h1>
-        <p className="text-gray-400 mb-8">Приложение столкнулось с непредвиденной ошибкой.</p>
+      <body className="min-h-dvh flex flex-col items-center justify-center bg-canvas text-prose antialiased">
+        <p className="text-7xl font-bold text-chip mb-4 tabular-nums select-none">500</p>
+        <h1 className="text-xl font-semibold mb-2">Критическая ошибка</h1>
+        <p className="text-dim text-sm mb-8">
+          Приложение столкнулось с непредвиденной ошибкой.
+        </p>
         <button
           onClick={reset}
-          className="bg-blue-600 hover:bg-blue-500 text-white px-6 py-2.5 rounded-lg font-medium transition-colors"
+          className="bg-accent hover:bg-accent-hover text-white px-6 py-2.5 rounded-lg text-sm font-semibold transition-colors"
         >
           Попробовать снова
         </button>

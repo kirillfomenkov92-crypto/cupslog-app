@@ -3,6 +3,9 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 
+const inputBase =
+  "bg-raised border rounded-lg px-3 py-2 text-sm text-prose placeholder:text-muted focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors";
+
 export default function CreateTournamentForm() {
   const router = useRouter();
   const [name, setName] = useState("");
@@ -40,46 +43,65 @@ export default function CreateTournamentForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="bg-gray-900 border border-gray-800 rounded-xl p-6 flex flex-col gap-3 max-w-md"
+      className="bg-card border border-line rounded-xl p-5 flex flex-col gap-3 max-w-md"
     >
-      <div className="flex flex-col gap-1">
+      <div className="flex flex-col gap-1.5">
+        <label htmlFor="t-name" className="text-xs font-medium text-dim">
+          Название
+        </label>
         <input
+          id="t-name"
           name="tournament-name"
-          aria-label="Название турнира"
-          placeholder="Название турнира…"
+          placeholder="CupsLog Open 2025"
           autoComplete="off"
           value={name}
           onChange={(e) => setName(e.target.value)}
           required
-          className={`bg-gray-800 border rounded-lg px-3 py-2 text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus:border-gray-500 ${fieldErrors.name ? "border-red-500" : "border-gray-700"}`}
+          className={`${inputBase} ${fieldErrors.name ? "border-live" : "border-line"}`}
         />
-        {fieldErrors.name && <span className="text-red-400 text-xs">{fieldErrors.name}</span>}
+        {fieldErrors.name && (
+          <span className="text-live text-xs">{fieldErrors.name}</span>
+        )}
       </div>
-      <input
-        name="tournament-description"
-        aria-label="Описание турнира"
-        placeholder="Описание (необязательно)…"
-        autoComplete="off"
-        value={description}
-        onChange={(e) => setDescription(e.target.value)}
-        className="bg-gray-800 border border-gray-700 rounded-lg px-3 py-2 text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus:border-gray-500"
-      />
-      <div className="flex flex-col gap-1">
+
+      <div className="flex flex-col gap-1.5">
+        <label htmlFor="t-desc" className="text-xs font-medium text-dim">
+          Описание{" "}
+          <span className="text-muted font-normal">(необязательно)</span>
+        </label>
         <input
+          id="t-desc"
+          name="tournament-description"
+          placeholder="Краткое описание турнира…"
+          autoComplete="off"
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+          className={`${inputBase} border-line`}
+        />
+      </div>
+
+      <div className="flex flex-col gap-1.5">
+        <label htmlFor="t-date" className="text-xs font-medium text-dim">
+          Дата начала
+        </label>
+        <input
+          id="t-date"
           type="date"
           name="tournament-start-date"
-          aria-label="Дата начала турнира"
           value={startDate}
           onChange={(e) => setStartDate(e.target.value)}
           required
-          className={`bg-gray-800 border rounded-lg px-3 py-2 text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus:border-gray-500 ${fieldErrors.startDate ? "border-red-500" : "border-gray-700"}`}
+          className={`${inputBase} ${fieldErrors.startDate ? "border-live" : "border-line"}`}
         />
-        {fieldErrors.startDate && <span className="text-red-400 text-xs">{fieldErrors.startDate}</span>}
+        {fieldErrors.startDate && (
+          <span className="text-live text-xs">{fieldErrors.startDate}</span>
+        )}
       </div>
+
       <button
         type="submit"
         disabled={loading}
-        className="bg-blue-600 hover:bg-blue-500 text-white rounded-lg px-4 py-2 text-sm font-medium transition-colors disabled:opacity-50"
+        className="bg-accent hover:bg-accent-hover disabled:opacity-60 disabled:cursor-not-allowed text-white rounded-lg px-4 py-2 text-sm font-semibold transition-colors mt-1 active:scale-[0.98]"
       >
         {loading ? "Создаётся..." : "Создать турнир"}
       </button>

@@ -2,7 +2,35 @@
 import { useState } from "react";
 import { toast } from "sonner";
 
-export default function ChangePasswordForm({ insecureSecret }: { insecureSecret: boolean }) {
+const inputBase =
+  "bg-raised border rounded-lg px-3 py-2 text-sm text-prose placeholder:text-muted focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors";
+
+function WarnIcon() {
+  return (
+    <svg
+      width="15"
+      height="15"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+      className="shrink-0 mt-0.5"
+    >
+      <path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
+      <line x1="12" y1="9" x2="12" y2="13" />
+      <line x1="12" y1="17" x2="12.01" y2="17" />
+    </svg>
+  );
+}
+
+export default function ChangePasswordForm({
+  insecureSecret,
+}: {
+  insecureSecret: boolean;
+}) {
   const [currentPassword, setCurrentPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -35,57 +63,77 @@ export default function ChangePasswordForm({ insecureSecret }: { insecureSecret:
   }
 
   return (
-    <div className="bg-gray-900 border border-gray-800 rounded-xl p-6 max-w-md">
+    <div className="bg-card border border-line rounded-xl p-5 max-w-md">
       {insecureSecret && (
-        <div className="mb-4 p-3 rounded-lg bg-yellow-900/40 border border-yellow-700 text-yellow-300 text-sm">
-          ⚠️ NEXTAUTH_SECRET не изменён. Замени его на случайное значение перед выходом в продакшен.
+        <div className="flex items-start gap-2 mb-4 p-3 rounded-lg bg-yellow-500/8 border border-yellow-500/25 text-yellow-400 text-sm">
+          <WarnIcon />
+          <span>
+            NEXTAUTH_SECRET не изменён. Замени его на случайное значение перед
+            выходом в продакшен.
+          </span>
         </div>
       )}
-      <h2 className="text-lg font-semibold mb-4">Сменить пароль</h2>
+      <h2 className="text-base font-semibold text-prose mb-4">Сменить пароль</h2>
       <form onSubmit={handleSubmit} className="flex flex-col gap-3">
-        <div className="flex flex-col gap-1">
+        <div className="flex flex-col gap-1.5">
+          <label htmlFor="cp-current" className="text-xs font-medium text-dim">
+            Текущий пароль
+          </label>
           <input
+            id="cp-current"
             type="password"
-            placeholder="Текущий пароль"
-            aria-label="Текущий пароль"
+            placeholder="••••••••"
             value={currentPassword}
             onChange={(e) => setCurrentPassword(e.target.value)}
             required
             autoComplete="current-password"
-            className={`bg-gray-800 border rounded-lg px-3 py-2 text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 ${fieldErrors.currentPassword ? "border-red-500" : "border-gray-700"}`}
+            className={`${inputBase} ${fieldErrors.currentPassword ? "border-live" : "border-line"}`}
           />
-          {fieldErrors.currentPassword && <span className="text-red-400 text-xs">{fieldErrors.currentPassword}</span>}
+          {fieldErrors.currentPassword && (
+            <span className="text-live text-xs">{fieldErrors.currentPassword}</span>
+          )}
         </div>
-        <div className="flex flex-col gap-1">
+        <div className="flex flex-col gap-1.5">
+          <label htmlFor="cp-new" className="text-xs font-medium text-dim">
+            Новый пароль{" "}
+            <span className="text-muted font-normal">(мин. 8 символов)</span>
+          </label>
           <input
+            id="cp-new"
             type="password"
-            placeholder="Новый пароль (мин. 8 символов)"
-            aria-label="Новый пароль"
+            placeholder="••••••••"
             value={newPassword}
             onChange={(e) => setNewPassword(e.target.value)}
             required
             autoComplete="new-password"
-            className={`bg-gray-800 border rounded-lg px-3 py-2 text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 ${fieldErrors.newPassword ? "border-red-500" : "border-gray-700"}`}
+            className={`${inputBase} ${fieldErrors.newPassword ? "border-live" : "border-line"}`}
           />
-          {fieldErrors.newPassword && <span className="text-red-400 text-xs">{fieldErrors.newPassword}</span>}
+          {fieldErrors.newPassword && (
+            <span className="text-live text-xs">{fieldErrors.newPassword}</span>
+          )}
         </div>
-        <div className="flex flex-col gap-1">
+        <div className="flex flex-col gap-1.5">
+          <label htmlFor="cp-confirm" className="text-xs font-medium text-dim">
+            Подтвердить пароль
+          </label>
           <input
+            id="cp-confirm"
             type="password"
-            placeholder="Подтверди новый пароль"
-            aria-label="Подтверждение нового пароля"
+            placeholder="••••••••"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
             required
             autoComplete="new-password"
-            className={`bg-gray-800 border rounded-lg px-3 py-2 text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 ${fieldErrors.confirmPassword ? "border-red-500" : "border-gray-700"}`}
+            className={`${inputBase} ${fieldErrors.confirmPassword ? "border-live" : "border-line"}`}
           />
-          {fieldErrors.confirmPassword && <span className="text-red-400 text-xs">{fieldErrors.confirmPassword}</span>}
+          {fieldErrors.confirmPassword && (
+            <span className="text-live text-xs">{fieldErrors.confirmPassword}</span>
+          )}
         </div>
         <button
           type="submit"
           disabled={loading}
-          className="bg-blue-600 hover:bg-blue-500 text-white rounded-lg px-4 py-2 text-sm font-medium transition-colors disabled:opacity-50"
+          className="bg-accent hover:bg-accent-hover disabled:opacity-60 disabled:cursor-not-allowed text-white rounded-lg px-4 py-2 text-sm font-semibold transition-colors mt-1 active:scale-[0.98]"
         >
           {loading ? "Сохраняется..." : "Сменить пароль"}
         </button>

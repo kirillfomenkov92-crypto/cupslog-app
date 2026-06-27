@@ -15,7 +15,8 @@ export default async function AdminPage() {
   const session = await getServerSession(authOptions);
   if ((session?.user as { role?: string })?.role !== "ADMIN") redirect("/login");
 
-  const insecureSecret = process.env.NEXTAUTH_SECRET === "change-this-to-a-random-secret-in-production";
+  const insecureSecret =
+    process.env.NEXTAUTH_SECRET === "change-this-to-a-random-secret-in-production";
   const tournaments = await prisma.tournament.findMany({
     orderBy: { startDate: "desc" },
     include: {
@@ -28,79 +29,104 @@ export default async function AdminPage() {
   });
 
   return (
-    <div className="max-w-5xl mx-auto px-6 py-12">
-      <h1 className="text-3xl font-bold mb-8">Администрация</h1>
+    <div className="animate-page-in px-6 md:px-8 py-8">
+      <h1 className="text-2xl font-bold tracking-tight text-prose mb-8">
+        Администрация
+      </h1>
 
-      <section className="mb-12">
-        <h2 className="text-xl font-semibold mb-4">Создать турнир</h2>
+      {/* Create tournament */}
+      <section className="mb-10 pb-10 border-b border-line">
+        <h2 className="text-base font-semibold text-prose mb-4">Создать турнир</h2>
         <CreateTournamentForm />
       </section>
 
-      <section className="mb-12">
+      {/* Change password */}
+      <section className="mb-10 pb-10 border-b border-line">
         <ChangePasswordForm insecureSecret={insecureSecret} />
       </section>
 
+      {/* Tournaments list */}
       <section>
-        <h2 className="text-xl font-semibold mb-6">Турниры</h2>
+        <h2 className="text-base font-semibold text-prose mb-6">
+          Турниры ({tournaments.length})
+        </h2>
         {tournaments.length === 0 && (
-          <p className="text-gray-500">Нет турниров. Создай первый выше.</p>
+          <p className="text-dim text-sm">Нет турниров. Создай первый выше.</p>
         )}
-        {tournaments.map((t) => (
-          <div key={t.id} className="mb-10 bg-gray-900 border border-gray-800 rounded-xl p-6">
-            {/* Tournament header */}
-            <div className="flex items-center justify-between mb-4 flex-wrap gap-3">
-              <div>
-                <h3 className="text-lg font-semibold">{t.name}</h3>
-                <p className="text-gray-500 text-xs mt-0.5">
-                  {new Date(t.startDate).toLocaleDateString("ru-RU")}
-                </p>
+        <div className="flex flex-col gap-6">
+          {tournaments.map((t) => (
+            <div
+              key={t.id}
+              className="bg-card border border-line rounded-xl p-6"
+            >
+              {/* Tournament header */}
+              <div className="flex items-start justify-between mb-5 flex-wrap gap-3">
+                <div className="min-w-0">
+                  <h3 className="font-semibold text-prose leading-tight">{t.name}</h3>
+                  <p className="text-muted text-xs mt-1">
+                    {new Date(t.startDate).toLocaleDateString("ru-RU")}
+                  </p>
+                </div>
+                <div className="flex items-center gap-2 shrink-0">
+                  <TournamentStatusControl id={t.id} status={t.status} />
+                  <DeleteTournamentButton id={t.id} name={t.name} />
+                </div>
               </div>
-              <div className="flex items-center gap-2">
-                <TournamentStatusControl id={t.id} status={t.status} />
-                <DeleteTournamentButton id={t.id} name={t.name} />
-              </div>
-            </div>
 
-            {/* Teams section */}
-            <div className="mb-6">
-              <div className="flex items-center gap-3 mb-3">
-                <h4 className="text-sm font-medium text-gray-300">Команды ({t.teams.length})</h4>
-                <CreateTeamForm tournamentId={t.id} />
-              </div>
-              {t.teams.length > 0 && (
-                <div className="grid gap-3">
-                  {t.teams.map((team) => (
-                    <div key={team.id} className="bg-gray-800 border border-gray-700 rounded-lg p-3">
-                      <div className="flex items-center gap-2 mb-2">
-                        <span className="font-medium text-sm">{team.name}</span>
-                        <span className="text-xs text-gray-500 bg-gray-700 px-1.5 py-0.5 rounded">{team.tag}</span>
-                        <span className="text-xs text-gray-600">{team.players.length} игроков</span>
+              {/* Teams */}
+              <div className="mb-5">
+                <div className="flex items-center gap-3 mb-3">
+                  <h4 className="text-sm font-medium text-dim">
+                    Команды ({t.teams.length})
+                  </h4>
+                  <CreateTeamForm tournamentId={t.id} />
+                </div>
+                {t.teams.length > 0 && (
+                  <div className="flex flex-col gap-2">
+                    {t.teams.map((team) => (
+                      <div
+                        key={team.id}
+                        className="bg-raised border border-line rounded-lg p-3"
+                      >
+                        <div className="flex items-center gap-2 mb-2">
+                          <span className="font-medium text-sm text-prose">
+                            {team.name}
+                          </span>
+                          <span className="text-xs text-muted bg-chip px-1.5 py-0.5 rounded font-mono">
+                            {team.tag}
+                          </span>
+                          <span className="text-xs text-muted">
+                            {team.players.length} игр.
+                          </span>
+                        </div>
+                        <TeamRoster teamId={team.id} players={team.players} />
                       </div>
-                      <TeamRoster teamId={team.id} players={team.players} />
-                    </div>
-                  ))}
-                </div>
-              )}
-            </div>
-
-            {/* Matches section */}
-            <div>
-              <div className="flex items-center gap-3 mb-3">
-                <h4 className="text-sm font-medium text-gray-300">Матчи ({t.matches.length})</h4>
-                <CreateMatchForm tournamentId={t.id} teams={t.teams} />
+                    ))}
+                  </div>
+                )}
               </div>
-              {t.matches.length === 0 ? (
-                <p className="text-gray-600 text-xs">Нет матчей</p>
-              ) : (
-                <div className="grid gap-3">
-                  {t.matches.map((match) => (
-                    <AdminMatchCard key={match.id} match={match} />
-                  ))}
+
+              {/* Matches */}
+              <div>
+                <div className="flex items-center gap-3 mb-3">
+                  <h4 className="text-sm font-medium text-dim">
+                    Матчи ({t.matches.length})
+                  </h4>
+                  <CreateMatchForm tournamentId={t.id} teams={t.teams} />
                 </div>
-              )}
+                {t.matches.length === 0 ? (
+                  <p className="text-muted text-xs">Нет матчей</p>
+                ) : (
+                  <div className="flex flex-col gap-2">
+                    {t.matches.map((match) => (
+                      <AdminMatchCard key={match.id} match={match} />
+                    ))}
+                  </div>
+                )}
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </section>
     </div>
   );

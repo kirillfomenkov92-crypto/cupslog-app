@@ -2,7 +2,25 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
-export default function TournamentStatusControl({ id, status }: { id: string; status: string }) {
+const OPTION_STYLES: Record<string, string> = {
+  UPCOMING: "bg-accent/15 text-accent border-accent/25",
+  LIVE:     "bg-live/15 text-live border-live/25",
+  COMPLETED: "bg-chip text-muted border-line",
+};
+
+const OPTION_LABELS: Record<string, string> = {
+  UPCOMING: "Скоро",
+  LIVE: "LIVE",
+  COMPLETED: "Завершён",
+};
+
+export default function TournamentStatusControl({
+  id,
+  status,
+}: {
+  id: string;
+  status: string;
+}) {
   const router = useRouter();
   const [current, setCurrent] = useState(status);
   const [loading, setLoading] = useState(false);
@@ -22,21 +40,21 @@ export default function TournamentStatusControl({ id, status }: { id: string; st
     }
   }
 
-  const options = ["UPCOMING", "LIVE", "COMPLETED"];
-  const colors: Record<string, string> = {
-    UPCOMING: "bg-blue-900 text-blue-300 border-blue-700",
-    LIVE: "bg-red-900 text-red-300 border-red-700",
-    COMPLETED: "bg-gray-800 text-gray-400 border-gray-600",
-  };
-
   return (
-    <div className="flex gap-1">
-      {options.map((opt) => (
-        <button key={opt} onClick={() => update(opt)} disabled={loading || current === opt}
-          className={`text-xs px-2 py-0.5 rounded-full border transition-colors ${
-            current === opt ? colors[opt] : "bg-gray-900 text-gray-600 border-gray-700 hover:border-gray-500"
-          }`}>
-          {opt === "UPCOMING" ? "Скоро" : opt === "LIVE" ? "LIVE" : "Завершён"}
+    <div className="flex gap-1" role="group" aria-label="Статус турнира">
+      {(["UPCOMING", "LIVE", "COMPLETED"] as const).map((opt) => (
+        <button
+          key={opt}
+          onClick={() => update(opt)}
+          disabled={loading || current === opt}
+          aria-pressed={current === opt}
+          className={`text-xs px-2.5 py-1 rounded-full border font-medium transition-colors ${
+            current === opt
+              ? OPTION_STYLES[opt]
+              : "bg-canvas text-muted border-line hover:border-line-strong hover:text-dim"
+          } disabled:cursor-not-allowed`}
+        >
+          {OPTION_LABELS[opt]}
         </button>
       ))}
     </div>

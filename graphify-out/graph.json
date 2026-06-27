@@ -28,10 +28,68 @@
         "confidence": "INFERRED",
         "confidence_score": 0.75,
         "source_file": "public/next.svg"
+      },
+      {
+        "id": "transaction_lifecycle",
+        "label": "Transaction Lifecycle Protocol",
+        "nodes": [
+          "transaction",
+          "adapter_class",
+          "sql_driver_adapter",
+          "savepoint"
+        ],
+        "relation": "IMPLEMENTS",
+        "confidence": "EXTRACTED",
+        "properties": {
+          "description": "BEGIN at depth 1, SAVEPOINT sp_N at depth>1; commit/rollback are lifecycle hooks only, SQL sent via executeRaw"
+        }
+      },
+      {
+        "id": "conversion_pipeline",
+        "label": "Data Conversion Pipeline",
+        "nodes": [
+          "argument_mapping",
+          "row_mapping",
+          "column_type_inference",
+          "column_type_enum"
+        ],
+        "relation": "RELATED_TO",
+        "confidence": "INFERRED",
+        "properties": {
+          "description": "mapArg converts input, mapRow converts output, inferColumnType handles missing metadata"
+        }
       }
     ]
   },
   "nodes": [
+    {
+      "label": ".graphify-watch.sh",
+      "file_type": "code",
+      "source_file": ".graphify-watch.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "id": "graphify_watch",
+      "community": 19,
+      "norm_label": ".graphify-watch.sh"
+    },
+    {
+      "label": ".graphify-watch.sh script",
+      "file_type": "code",
+      "source_file": ".graphify-watch.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "id": "home_yan_projects_cupslog_graphify_watch_sh__entry",
+      "community": 19,
+      "norm_label": ".graphify-watch.sh script"
+    },
     {
       "label": "eslint.config.mjs",
       "file_type": "code",
@@ -39,7 +97,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "eslint_config",
-      "community": 12,
+      "community": 3,
       "norm_label": "eslint.config.mjs"
     },
     {
@@ -49,7 +107,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "eslint_config_eslintconfig",
-      "community": 12,
+      "community": 3,
       "norm_label": "eslintconfig"
     },
     {
@@ -59,7 +117,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "next_config",
-      "community": 14,
+      "community": 21,
       "norm_label": "next.config.ts"
     },
     {
@@ -69,7 +127,7 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "next_config_nextconfig",
-      "community": 14,
+      "community": 21,
       "norm_label": "nextconfig"
     },
     {
@@ -79,7 +137,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "package",
-      "community": 4,
+      "community": 5,
       "norm_label": "package.json"
     },
     {
@@ -89,7 +147,7 @@
       "source_location": "L2",
       "_origin": "ast",
       "id": "package_name",
-      "community": 4,
+      "community": 5,
       "norm_label": "name"
     },
     {
@@ -99,7 +157,7 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "package_version",
-      "community": 4,
+      "community": 5,
       "norm_label": "version"
     },
     {
@@ -109,7 +167,7 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "package_private",
-      "community": 4,
+      "community": 5,
       "norm_label": "private"
     },
     {
@@ -119,7 +177,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "package_scripts",
-      "community": 4,
+      "community": 5,
       "norm_label": "scripts"
     },
     {
@@ -129,7 +187,7 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "package_scripts_dev",
-      "community": 4,
+      "community": 5,
       "norm_label": "dev"
     },
     {
@@ -139,7 +197,7 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "package_scripts_build",
-      "community": 4,
+      "community": 5,
       "norm_label": "build"
     },
     {
@@ -149,7 +207,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "package_scripts_start",
-      "community": 4,
+      "community": 5,
       "norm_label": "start"
     },
     {
@@ -159,7 +217,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "package_scripts_lint",
-      "community": 4,
+      "community": 5,
       "norm_label": "lint"
     },
     {
@@ -169,7 +227,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "package_scripts_create_admin",
-      "community": 4,
+      "community": 5,
       "norm_label": "create-admin"
     },
     {
@@ -199,7 +257,7 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "package_dependencies_prisma_client",
-      "community": 5,
+      "community": 1,
       "norm_label": "@prisma/client"
     },
     {
@@ -273,10 +331,30 @@
       "norm_label": "react-dom"
     },
     {
-      "label": "devDependencies",
+      "label": "sonner",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L22",
+      "_origin": "ast",
+      "id": "package_dependencies_sonner",
+      "community": 5,
+      "norm_label": "sonner"
+    },
+    {
+      "label": "zod",
       "file_type": "code",
       "source_file": "package.json",
       "source_location": "L23",
+      "_origin": "ast",
+      "id": "package_dependencies_zod",
+      "community": 5,
+      "norm_label": "zod"
+    },
+    {
+      "label": "devDependencies",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L25",
       "_origin": "ast",
       "id": "package_devdependencies",
       "community": 3,
@@ -286,7 +364,7 @@
       "label": "@tailwindcss/postcss",
       "file_type": "code",
       "source_file": "package.json",
-      "source_location": "L24",
+      "source_location": "L26",
       "_origin": "ast",
       "id": "package_devdependencies_tailwindcss_postcss",
       "community": 3,
@@ -296,7 +374,7 @@
       "label": "@types/bcryptjs",
       "file_type": "code",
       "source_file": "package.json",
-      "source_location": "L25",
+      "source_location": "L27",
       "_origin": "ast",
       "id": "package_devdependencies_types_bcryptjs",
       "community": 3,
@@ -306,7 +384,7 @@
       "label": "@types/node",
       "file_type": "code",
       "source_file": "package.json",
-      "source_location": "L26",
+      "source_location": "L28",
       "_origin": "ast",
       "id": "package_devdependencies_types_node",
       "community": 3,
@@ -316,7 +394,7 @@
       "label": "@types/pg",
       "file_type": "code",
       "source_file": "package.json",
-      "source_location": "L27",
+      "source_location": "L29",
       "_origin": "ast",
       "id": "package_devdependencies_types_pg",
       "community": 3,
@@ -326,7 +404,7 @@
       "label": "@types/react",
       "file_type": "code",
       "source_file": "package.json",
-      "source_location": "L28",
+      "source_location": "L30",
       "_origin": "ast",
       "id": "package_devdependencies_types_react",
       "community": 3,
@@ -336,7 +414,7 @@
       "label": "@types/react-dom",
       "file_type": "code",
       "source_file": "package.json",
-      "source_location": "L29",
+      "source_location": "L31",
       "_origin": "ast",
       "id": "package_devdependencies_types_react_dom",
       "community": 3,
@@ -346,7 +424,7 @@
       "label": "eslint",
       "file_type": "code",
       "source_file": "package.json",
-      "source_location": "L30",
+      "source_location": "L32",
       "_origin": "ast",
       "id": "package_devdependencies_eslint",
       "community": 3,
@@ -356,7 +434,7 @@
       "label": "eslint-config-next",
       "file_type": "code",
       "source_file": "package.json",
-      "source_location": "L31",
+      "source_location": "L33",
       "_origin": "ast",
       "id": "package_devdependencies_eslint_config_next",
       "community": 3,
@@ -366,7 +444,7 @@
       "label": "tailwindcss",
       "file_type": "code",
       "source_file": "package.json",
-      "source_location": "L32",
+      "source_location": "L34",
       "_origin": "ast",
       "id": "package_devdependencies_tailwindcss",
       "community": 3,
@@ -376,7 +454,7 @@
       "label": "tsx",
       "file_type": "code",
       "source_file": "package.json",
-      "source_location": "L33",
+      "source_location": "L35",
       "_origin": "ast",
       "id": "package_devdependencies_tsx",
       "community": 3,
@@ -386,7 +464,7 @@
       "label": "typescript",
       "file_type": "code",
       "source_file": "package.json",
-      "source_location": "L34",
+      "source_location": "L36",
       "_origin": "ast",
       "id": "package_devdependencies_typescript",
       "community": 3,
@@ -399,7 +477,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "postcss_config",
-      "community": 15,
+      "community": 22,
       "norm_label": "postcss.config.mjs"
     },
     {
@@ -409,7 +487,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "postcss_config_config",
-      "community": 15,
+      "community": 22,
       "norm_label": "config"
     },
     {
@@ -419,7 +497,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "prisma_config",
-      "community": 16,
+      "community": 23,
       "norm_label": "prisma.config.ts"
     },
     {
@@ -429,7 +507,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "scripts_create_admin",
-      "community": 10,
+      "community": 15,
       "norm_label": "create-admin.ts"
     },
     {
@@ -439,7 +517,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "scripts_create_admin_adapter",
-      "community": 10,
+      "community": 15,
       "norm_label": "adapter"
     },
     {
@@ -449,7 +527,7 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "scripts_create_admin_prisma",
-      "community": 10,
+      "community": 15,
       "norm_label": "prisma"
     },
     {
@@ -459,7 +537,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "scripts_create_admin_main",
-      "community": 10,
+      "community": 15,
       "norm_label": "main()"
     },
     {
@@ -469,18 +547,48 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "admin_page",
-      "community": 6,
+      "community": 2,
       "norm_label": "page.tsx"
     },
     {
       "label": "AdminPage()",
       "file_type": "code",
       "source_file": "src/app/admin/page.tsx",
-      "source_location": "L8",
+      "source_location": "L14",
       "_origin": "ast",
       "id": "admin_page_adminpage",
-      "community": 6,
+      "community": 2,
       "norm_label": "adminpage()"
+    },
+    {
+      "label": "route.ts",
+      "file_type": "code",
+      "source_file": "src/app/api/admin/change-password/route.ts",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "change_password_route",
+      "community": 0,
+      "norm_label": "route.ts"
+    },
+    {
+      "label": "schema",
+      "file_type": "code",
+      "source_file": "src/app/api/admin/change-password/route.ts",
+      "source_location": "L8",
+      "_origin": "ast",
+      "id": "change_password_route_schema",
+      "community": 0,
+      "norm_label": "schema"
+    },
+    {
+      "label": "POST()",
+      "file_type": "code",
+      "source_file": "src/app/api/admin/change-password/route.ts",
+      "source_location": "L17",
+      "_origin": "ast",
+      "id": "change_password_route_post",
+      "community": 0,
+      "norm_label": "post()"
     },
     {
       "label": "route.ts",
@@ -553,6 +661,16 @@
       "norm_label": "patch()"
     },
     {
+      "label": "DELETE()",
+      "file_type": "code",
+      "source_file": "src/app/api/matches/[id]/route.ts",
+      "source_location": "L36",
+      "_origin": "ast",
+      "id": "src_app_api_matches_id_route_ts_id_route_delete",
+      "community": 0,
+      "norm_label": "delete()"
+    },
+    {
       "label": "route.ts",
       "file_type": "code",
       "source_file": "src/app/api/matches/[id]/score/route.ts",
@@ -578,7 +696,7 @@
       "source_file": "src/app/api/matches/route.ts",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "matches_route",
+      "id": "src_app_api_matches_route_ts_matches_route",
       "community": 0,
       "norm_label": "route.ts"
     },
@@ -588,7 +706,87 @@
       "source_file": "src/app/api/matches/route.ts",
       "source_location": "L6",
       "_origin": "ast",
-      "id": "matches_route_post",
+      "id": "src_app_api_matches_route_ts_matches_route_post",
+      "community": 0,
+      "norm_label": "post()"
+    },
+    {
+      "label": "route.ts",
+      "file_type": "code",
+      "source_file": "src/app/api/teams/[id]/players/route.ts",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "players_route",
+      "community": 0,
+      "norm_label": "route.ts"
+    },
+    {
+      "label": "playerSchema",
+      "file_type": "code",
+      "source_file": "src/app/api/teams/[id]/players/route.ts",
+      "source_location": "L7",
+      "_origin": "ast",
+      "id": "players_route_playerschema",
+      "community": 0,
+      "norm_label": "playerschema"
+    },
+    {
+      "label": "GET()",
+      "file_type": "code",
+      "source_file": "src/app/api/teams/[id]/players/route.ts",
+      "source_location": "L13",
+      "_origin": "ast",
+      "id": "players_route_get",
+      "community": 0,
+      "norm_label": "get()"
+    },
+    {
+      "label": "POST()",
+      "file_type": "code",
+      "source_file": "src/app/api/teams/[id]/players/route.ts",
+      "source_location": "L19",
+      "_origin": "ast",
+      "id": "players_route_post",
+      "community": 0,
+      "norm_label": "post()"
+    },
+    {
+      "label": "DELETE()",
+      "file_type": "code",
+      "source_file": "src/app/api/teams/[id]/players/route.ts",
+      "source_location": "L41",
+      "_origin": "ast",
+      "id": "players_route_delete",
+      "community": 0,
+      "norm_label": "delete()"
+    },
+    {
+      "label": "route.ts",
+      "file_type": "code",
+      "source_file": "src/app/api/tournaments/[id]/matches/route.ts",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_app_api_tournaments_id_matches_route_ts_matches_route",
+      "community": 0,
+      "norm_label": "route.ts"
+    },
+    {
+      "label": "matchSchema",
+      "file_type": "code",
+      "source_file": "src/app/api/tournaments/[id]/matches/route.ts",
+      "source_location": "L7",
+      "_origin": "ast",
+      "id": "matches_route_matchschema",
+      "community": 0,
+      "norm_label": "matchschema"
+    },
+    {
+      "label": "POST()",
+      "file_type": "code",
+      "source_file": "src/app/api/tournaments/[id]/matches/route.ts",
+      "source_location": "L20",
+      "_origin": "ast",
+      "id": "src_app_api_tournaments_id_matches_route_ts_matches_route_post",
       "community": 0,
       "norm_label": "post()"
     },
@@ -606,11 +804,41 @@
       "label": "GET()",
       "file_type": "code",
       "source_file": "src/app/api/tournaments/[id]/route.ts",
-      "source_location": "L4",
+      "source_location": "L6",
       "_origin": "ast",
       "id": "src_app_api_tournaments_id_route_ts_id_route_get",
       "community": 0,
       "norm_label": "get()"
+    },
+    {
+      "label": "DELETE()",
+      "file_type": "code",
+      "source_file": "src/app/api/tournaments/[id]/route.ts",
+      "source_location": "L22",
+      "_origin": "ast",
+      "id": "src_app_api_tournaments_id_route_ts_id_route_delete",
+      "community": 0,
+      "norm_label": "delete()"
+    },
+    {
+      "label": "route.ts",
+      "file_type": "code",
+      "source_file": "src/app/api/tournaments/[id]/status/route.ts",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "status_route",
+      "community": 0,
+      "norm_label": "route.ts"
+    },
+    {
+      "label": "PATCH()",
+      "file_type": "code",
+      "source_file": "src/app/api/tournaments/[id]/status/route.ts",
+      "source_location": "L6",
+      "_origin": "ast",
+      "id": "status_route_patch",
+      "community": 0,
+      "norm_label": "patch()"
     },
     {
       "label": "route.ts",
@@ -623,10 +851,20 @@
       "norm_label": "route.ts"
     },
     {
+      "label": "teamSchema",
+      "file_type": "code",
+      "source_file": "src/app/api/tournaments/[id]/teams/route.ts",
+      "source_location": "L7",
+      "_origin": "ast",
+      "id": "teams_route_teamschema",
+      "community": 0,
+      "norm_label": "teamschema"
+    },
+    {
       "label": "POST()",
       "file_type": "code",
       "source_file": "src/app/api/tournaments/[id]/teams/route.ts",
-      "source_location": "L6",
+      "source_location": "L17",
       "_origin": "ast",
       "id": "teams_route_post",
       "community": 0,
@@ -643,10 +881,20 @@
       "norm_label": "route.ts"
     },
     {
+      "label": "tournamentSchema",
+      "file_type": "code",
+      "source_file": "src/app/api/tournaments/route.ts",
+      "source_location": "L7",
+      "_origin": "ast",
+      "id": "tournaments_route_tournamentschema",
+      "community": 0,
+      "norm_label": "tournamentschema"
+    },
+    {
       "label": "GET()",
       "file_type": "code",
       "source_file": "src/app/api/tournaments/route.ts",
-      "source_location": "L6",
+      "source_location": "L14",
       "_origin": "ast",
       "id": "tournaments_route_get",
       "community": 0,
@@ -656,7 +904,7 @@
       "label": "POST()",
       "file_type": "code",
       "source_file": "src/app/api/tournaments/route.ts",
-      "source_location": "L14",
+      "source_location": "L22",
       "_origin": "ast",
       "id": "tournaments_route_post",
       "community": 0,
@@ -669,28 +917,68 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "matchzy_route",
-      "community": 11,
+      "community": 12,
       "norm_label": "route.ts"
     },
     {
       "label": "MatchZyEvent",
       "file_type": "code",
       "source_file": "src/app/api/webhooks/matchzy/route.ts",
-      "source_location": "L4",
+      "source_location": "L5",
       "_origin": "ast",
       "id": "matchzy_route_matchzyevent",
-      "community": 11,
+      "community": 12,
       "norm_label": "matchzyevent"
     },
     {
       "label": "POST()",
       "file_type": "code",
       "source_file": "src/app/api/webhooks/matchzy/route.ts",
-      "source_location": "L12",
+      "source_location": "L13",
       "_origin": "ast",
       "id": "matchzy_route_post",
-      "community": 11,
+      "community": 12,
       "norm_label": "post()"
+    },
+    {
+      "label": "error.tsx",
+      "file_type": "code",
+      "source_file": "src/app/error.tsx",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "app_error",
+      "community": 17,
+      "norm_label": "error.tsx"
+    },
+    {
+      "label": "Error()",
+      "file_type": "code",
+      "source_file": "src/app/error.tsx",
+      "source_location": "L4",
+      "_origin": "ast",
+      "id": "app_error_error",
+      "community": 17,
+      "norm_label": "error()"
+    },
+    {
+      "label": "global-error.tsx",
+      "file_type": "code",
+      "source_file": "src/app/global-error.tsx",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "app_global_error",
+      "community": 18,
+      "norm_label": "global-error.tsx"
+    },
+    {
+      "label": "GlobalError()",
+      "file_type": "code",
+      "source_file": "src/app/global-error.tsx",
+      "source_location": "L4",
+      "_origin": "ast",
+      "id": "app_global_error_globalerror",
+      "community": 18,
+      "norm_label": "globalerror()"
     },
     {
       "label": "layout.tsx",
@@ -699,37 +987,47 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_layout",
-      "community": 7,
+      "community": 9,
       "norm_label": "layout.tsx"
     },
     {
       "label": "geist",
       "file_type": "code",
       "source_file": "src/app/layout.tsx",
-      "source_location": "L7",
+      "source_location": "L8",
       "_origin": "ast",
       "id": "app_layout_geist",
-      "community": 7,
+      "community": 9,
       "norm_label": "geist"
     },
     {
       "label": "metadata",
       "file_type": "code",
       "source_file": "src/app/layout.tsx",
-      "source_location": "L9",
+      "source_location": "L10",
       "_origin": "ast",
       "id": "app_layout_metadata",
-      "community": 7,
+      "community": 9,
       "norm_label": "metadata"
+    },
+    {
+      "label": "viewport",
+      "file_type": "code",
+      "source_file": "src/app/layout.tsx",
+      "source_location": "L15",
+      "_origin": "ast",
+      "id": "app_layout_viewport",
+      "community": 9,
+      "norm_label": "viewport"
     },
     {
       "label": "RootLayout()",
       "file_type": "code",
       "source_file": "src/app/layout.tsx",
-      "source_location": "L14",
+      "source_location": "L19",
       "_origin": "ast",
       "id": "app_layout_rootlayout",
-      "community": 7,
+      "community": 9,
       "norm_label": "rootlayout()"
     },
     {
@@ -739,7 +1037,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "login_page",
-      "community": 13,
+      "community": 20,
       "norm_label": "page.tsx"
     },
     {
@@ -749,7 +1047,7 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "login_page_loginpage",
-      "community": 13,
+      "community": 20,
       "norm_label": "loginpage()"
     },
     {
@@ -759,18 +1057,68 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_app_matches_id_page_tsx_id_page",
-      "community": 9,
+      "community": 10,
       "norm_label": "page.tsx"
+    },
+    {
+      "label": "generateMetadata()",
+      "file_type": "code",
+      "source_file": "src/app/matches/[id]/page.tsx",
+      "source_location": "L8",
+      "_origin": "ast",
+      "id": "src_app_matches_id_page_tsx_id_page_generatemetadata",
+      "community": 10,
+      "norm_label": "generatemetadata()"
+    },
+    {
+      "label": "MatchStatus",
+      "file_type": "code",
+      "source_file": "src/app/matches/[id]/page.tsx",
+      "source_location": "L28",
+      "_origin": "ast",
+      "id": "src_app_matches_id_page_tsx_id_page_matchstatus",
+      "community": 10,
+      "norm_label": "matchstatus"
+    },
+    {
+      "label": "MatchStatusBadge()",
+      "file_type": "code",
+      "source_file": "src/app/matches/[id]/page.tsx",
+      "source_location": "L30",
+      "_origin": "ast",
+      "id": "src_app_matches_id_page_tsx_id_page_matchstatusbadge",
+      "community": 10,
+      "norm_label": "matchstatusbadge()"
     },
     {
       "label": "MatchPage()",
       "file_type": "code",
       "source_file": "src/app/matches/[id]/page.tsx",
-      "source_location": "L7",
+      "source_location": "L53",
       "_origin": "ast",
       "id": "id_page_matchpage",
-      "community": 9,
+      "community": 10,
       "norm_label": "matchpage()"
+    },
+    {
+      "label": "not-found.tsx",
+      "file_type": "code",
+      "source_file": "src/app/not-found.tsx",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "app_not_found",
+      "community": 10,
+      "norm_label": "not-found.tsx"
+    },
+    {
+      "label": "NotFound()",
+      "file_type": "code",
+      "source_file": "src/app/not-found.tsx",
+      "source_location": "L3",
+      "_origin": "ast",
+      "id": "app_not_found_notfound",
+      "community": 10,
+      "norm_label": "notfound()"
     },
     {
       "label": "page.tsx",
@@ -779,18 +1127,68 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_page",
-      "community": 0,
+      "community": 13,
       "norm_label": "page.tsx"
+    },
+    {
+      "label": "TournamentStatus",
+      "file_type": "code",
+      "source_file": "src/app/page.tsx",
+      "source_location": "L6",
+      "_origin": "ast",
+      "id": "app_page_tournamentstatus",
+      "community": 13,
+      "norm_label": "tournamentstatus"
+    },
+    {
+      "label": "StatusBadge()",
+      "file_type": "code",
+      "source_file": "src/app/page.tsx",
+      "source_location": "L8",
+      "_origin": "ast",
+      "id": "app_page_statusbadge",
+      "community": 13,
+      "norm_label": "statusbadge()"
+    },
+    {
+      "label": "EmptyState()",
+      "file_type": "code",
+      "source_file": "src/app/page.tsx",
+      "source_location": "L31",
+      "_origin": "ast",
+      "id": "app_page_emptystate",
+      "community": 13,
+      "norm_label": "emptystate()"
     },
     {
       "label": "HomePage()",
       "file_type": "code",
       "source_file": "src/app/page.tsx",
-      "source_location": "L6",
+      "source_location": "L53",
       "_origin": "ast",
       "id": "app_page_homepage",
-      "community": 0,
+      "community": 13,
       "norm_label": "homepage()"
+    },
+    {
+      "label": "loading.tsx",
+      "file_type": "code",
+      "source_file": "src/app/tournaments/[id]/loading.tsx",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "id_loading",
+      "community": 11,
+      "norm_label": "loading.tsx"
+    },
+    {
+      "label": "TournamentLoading()",
+      "file_type": "code",
+      "source_file": "src/app/tournaments/[id]/loading.tsx",
+      "source_location": "L3",
+      "_origin": "ast",
+      "id": "id_loading_tournamentloading",
+      "community": 11,
+      "norm_label": "tournamentloading()"
     },
     {
       "label": "page.tsx",
@@ -799,18 +1197,98 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_app_tournaments_id_page_tsx_id_page",
-      "community": 8,
+      "community": 4,
       "norm_label": "page.tsx"
+    },
+    {
+      "label": "generateMetadata()",
+      "file_type": "code",
+      "source_file": "src/app/tournaments/[id]/page.tsx",
+      "source_location": "L11",
+      "_origin": "ast",
+      "id": "src_app_tournaments_id_page_tsx_id_page_generatemetadata",
+      "community": 4,
+      "norm_label": "generatemetadata()"
+    },
+    {
+      "label": "TournamentStatus",
+      "file_type": "code",
+      "source_file": "src/app/tournaments/[id]/page.tsx",
+      "source_location": "L31",
+      "_origin": "ast",
+      "id": "id_page_tournamentstatus",
+      "community": 4,
+      "norm_label": "tournamentstatus"
+    },
+    {
+      "label": "MatchStatus",
+      "file_type": "code",
+      "source_file": "src/app/tournaments/[id]/page.tsx",
+      "source_location": "L32",
+      "_origin": "ast",
+      "id": "src_app_tournaments_id_page_tsx_id_page_matchstatus",
+      "community": 4,
+      "norm_label": "matchstatus"
+    },
+    {
+      "label": "TournamentStatusBadge()",
+      "file_type": "code",
+      "source_file": "src/app/tournaments/[id]/page.tsx",
+      "source_location": "L34",
+      "_origin": "ast",
+      "id": "id_page_tournamentstatusbadge",
+      "community": 4,
+      "norm_label": "tournamentstatusbadge()"
+    },
+    {
+      "label": "MatchStatusBadge()",
+      "file_type": "code",
+      "source_file": "src/app/tournaments/[id]/page.tsx",
+      "source_location": "L57",
+      "_origin": "ast",
+      "id": "src_app_tournaments_id_page_tsx_id_page_matchstatusbadge",
+      "community": 4,
+      "norm_label": "matchstatusbadge()"
+    },
+    {
+      "label": "TeamInitials()",
+      "file_type": "code",
+      "source_file": "src/app/tournaments/[id]/page.tsx",
+      "source_location": "L80",
+      "_origin": "ast",
+      "id": "id_page_teaminitials",
+      "community": 4,
+      "norm_label": "teaminitials()"
     },
     {
       "label": "TournamentPage()",
       "file_type": "code",
       "source_file": "src/app/tournaments/[id]/page.tsx",
-      "source_location": "L8",
+      "source_location": "L93",
       "_origin": "ast",
       "id": "id_page_tournamentpage",
-      "community": 8,
+      "community": 10,
       "norm_label": "tournamentpage()"
+    },
+    {
+      "label": "loading.tsx",
+      "file_type": "code",
+      "source_file": "src/app/tournaments/loading.tsx",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "tournaments_loading",
+      "community": 11,
+      "norm_label": "loading.tsx"
+    },
+    {
+      "label": "TournamentsLoading()",
+      "file_type": "code",
+      "source_file": "src/app/tournaments/loading.tsx",
+      "source_location": "L3",
+      "_origin": "ast",
+      "id": "tournaments_loading_tournamentsloading",
+      "community": 11,
+      "norm_label": "tournamentsloading()"
     },
     {
       "label": "page.tsx",
@@ -819,17 +1297,47 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "tournaments_page",
-      "community": 0,
+      "community": 14,
       "norm_label": "page.tsx"
+    },
+    {
+      "label": "TournamentStatus",
+      "file_type": "code",
+      "source_file": "src/app/tournaments/page.tsx",
+      "source_location": "L6",
+      "_origin": "ast",
+      "id": "tournaments_page_tournamentstatus",
+      "community": 14,
+      "norm_label": "tournamentstatus"
+    },
+    {
+      "label": "StatusBadge()",
+      "file_type": "code",
+      "source_file": "src/app/tournaments/page.tsx",
+      "source_location": "L8",
+      "_origin": "ast",
+      "id": "tournaments_page_statusbadge",
+      "community": 14,
+      "norm_label": "statusbadge()"
+    },
+    {
+      "label": "EmptyState()",
+      "file_type": "code",
+      "source_file": "src/app/tournaments/page.tsx",
+      "source_location": "L31",
+      "_origin": "ast",
+      "id": "tournaments_page_emptystate",
+      "community": 14,
+      "norm_label": "emptystate()"
     },
     {
       "label": "TournamentsPage()",
       "file_type": "code",
       "source_file": "src/app/tournaments/page.tsx",
-      "source_location": "L6",
+      "source_location": "L52",
       "_origin": "ast",
       "id": "tournaments_page_tournamentspage",
-      "community": 0,
+      "community": 14,
       "norm_label": "tournamentspage()"
     },
     {
@@ -839,38 +1347,228 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "components_adminmatchcard",
-      "community": 6,
+      "community": 2,
       "norm_label": "adminmatchcard.tsx"
     },
     {
       "label": "Team",
       "file_type": "code",
       "source_file": "src/components/AdminMatchCard.tsx",
-      "source_location": "L4",
+      "source_location": "L6",
       "_origin": "ast",
       "id": "components_adminmatchcard_team",
-      "community": 6,
+      "community": 2,
       "norm_label": "team"
     },
     {
       "label": "Match",
       "file_type": "code",
       "source_file": "src/components/AdminMatchCard.tsx",
-      "source_location": "L9",
+      "source_location": "L11",
       "_origin": "ast",
       "id": "components_adminmatchcard_match",
-      "community": 6,
+      "community": 2,
       "norm_label": "match"
     },
     {
       "label": "AdminMatchCard()",
       "file_type": "code",
       "source_file": "src/components/AdminMatchCard.tsx",
-      "source_location": "L19",
+      "source_location": "L21",
       "_origin": "ast",
       "id": "components_adminmatchcard_adminmatchcard",
-      "community": 6,
+      "community": 2,
       "norm_label": "adminmatchcard()"
+    },
+    {
+      "label": "AppShell.tsx",
+      "file_type": "code",
+      "source_file": "src/components/AppShell.tsx",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "components_appshell",
+      "community": 9,
+      "norm_label": "appshell.tsx"
+    },
+    {
+      "label": "MenuIcon()",
+      "file_type": "code",
+      "source_file": "src/components/AppShell.tsx",
+      "source_location": "L5",
+      "_origin": "ast",
+      "id": "components_appshell_menuicon",
+      "community": 9,
+      "norm_label": "menuicon()"
+    },
+    {
+      "label": "BoltIcon()",
+      "file_type": "code",
+      "source_file": "src/components/AppShell.tsx",
+      "source_location": "L24",
+      "_origin": "ast",
+      "id": "components_appshell_bolticon",
+      "community": 9,
+      "norm_label": "bolticon()"
+    },
+    {
+      "label": "AppShell()",
+      "file_type": "code",
+      "source_file": "src/components/AppShell.tsx",
+      "source_location": "L32",
+      "_origin": "ast",
+      "id": "components_appshell_appshell",
+      "community": 9,
+      "norm_label": "appshell()"
+    },
+    {
+      "label": "Bracket.tsx",
+      "file_type": "code",
+      "source_file": "src/components/Bracket.tsx",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "components_bracket",
+      "community": 4,
+      "norm_label": "bracket.tsx"
+    },
+    {
+      "label": "Team",
+      "file_type": "code",
+      "source_file": "src/components/Bracket.tsx",
+      "source_location": "L5",
+      "_origin": "ast",
+      "id": "components_bracket_team",
+      "community": 4,
+      "norm_label": "team"
+    },
+    {
+      "label": "BracketMatch",
+      "file_type": "code",
+      "source_file": "src/components/Bracket.tsx",
+      "source_location": "L10",
+      "_origin": "ast",
+      "id": "components_bracket_bracketmatch",
+      "community": 4,
+      "norm_label": "bracketmatch"
+    },
+    {
+      "label": "groupIntoRounds()",
+      "file_type": "code",
+      "source_file": "src/components/Bracket.tsx",
+      "source_location": "L22",
+      "_origin": "ast",
+      "id": "components_bracket_groupintorounds",
+      "community": 4,
+      "norm_label": "groupintorounds()"
+    },
+    {
+      "label": "ROUND_LABELS",
+      "file_type": "code",
+      "source_file": "src/components/Bracket.tsx",
+      "source_location": "L38",
+      "_origin": "ast",
+      "id": "components_bracket_round_labels",
+      "community": 4,
+      "norm_label": "round_labels"
+    },
+    {
+      "label": "roundLabel()",
+      "file_type": "code",
+      "source_file": "src/components/Bracket.tsx",
+      "source_location": "L46",
+      "_origin": "ast",
+      "id": "components_bracket_roundlabel",
+      "community": 4,
+      "norm_label": "roundlabel()"
+    },
+    {
+      "label": "Bracket()",
+      "file_type": "code",
+      "source_file": "src/components/Bracket.tsx",
+      "source_location": "L51",
+      "_origin": "ast",
+      "id": "components_bracket_bracket",
+      "community": 4,
+      "norm_label": "bracket()"
+    },
+    {
+      "label": "ChangePasswordForm.tsx",
+      "file_type": "code",
+      "source_file": "src/components/ChangePasswordForm.tsx",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "components_changepasswordform",
+      "community": 2,
+      "norm_label": "changepasswordform.tsx"
+    },
+    {
+      "label": "ChangePasswordForm()",
+      "file_type": "code",
+      "source_file": "src/components/ChangePasswordForm.tsx",
+      "source_location": "L5",
+      "_origin": "ast",
+      "id": "components_changepasswordform_changepasswordform",
+      "community": 2,
+      "norm_label": "changepasswordform()"
+    },
+    {
+      "label": "CreateMatchForm.tsx",
+      "file_type": "code",
+      "source_file": "src/components/CreateMatchForm.tsx",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "components_creatematchform",
+      "community": 2,
+      "norm_label": "creatematchform.tsx"
+    },
+    {
+      "label": "CS2_MAPS",
+      "file_type": "code",
+      "source_file": "src/components/CreateMatchForm.tsx",
+      "source_location": "L6",
+      "_origin": "ast",
+      "id": "components_creatematchform_cs2_maps",
+      "community": 2,
+      "norm_label": "cs2_maps"
+    },
+    {
+      "label": "Team",
+      "file_type": "code",
+      "source_file": "src/components/CreateMatchForm.tsx",
+      "source_location": "L8",
+      "_origin": "ast",
+      "id": "components_creatematchform_team",
+      "community": 2,
+      "norm_label": "team"
+    },
+    {
+      "label": "CreateMatchForm()",
+      "file_type": "code",
+      "source_file": "src/components/CreateMatchForm.tsx",
+      "source_location": "L10",
+      "_origin": "ast",
+      "id": "components_creatematchform_creatematchform",
+      "community": 2,
+      "norm_label": "creatematchform()"
+    },
+    {
+      "label": "CreateTeamForm.tsx",
+      "file_type": "code",
+      "source_file": "src/components/CreateTeamForm.tsx",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "components_createteamform",
+      "community": 2,
+      "norm_label": "createteamform.tsx"
+    },
+    {
+      "label": "CreateTeamForm()",
+      "file_type": "code",
+      "source_file": "src/components/CreateTeamForm.tsx",
+      "source_location": "L6",
+      "_origin": "ast",
+      "id": "components_createteamform_createteamform",
+      "community": 2,
+      "norm_label": "createteamform()"
     },
     {
       "label": "CreateTournamentForm.tsx",
@@ -879,18 +1577,38 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "components_createtournamentform",
-      "community": 6,
+      "community": 2,
       "norm_label": "createtournamentform.tsx"
     },
     {
       "label": "CreateTournamentForm()",
       "file_type": "code",
       "source_file": "src/components/CreateTournamentForm.tsx",
-      "source_location": "L5",
+      "source_location": "L6",
       "_origin": "ast",
       "id": "components_createtournamentform_createtournamentform",
-      "community": 6,
+      "community": 2,
       "norm_label": "createtournamentform()"
+    },
+    {
+      "label": "DeleteTournamentButton.tsx",
+      "file_type": "code",
+      "source_file": "src/components/DeleteTournamentButton.tsx",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "components_deletetournamentbutton",
+      "community": 2,
+      "norm_label": "deletetournamentbutton.tsx"
+    },
+    {
+      "label": "DeleteTournamentButton()",
+      "file_type": "code",
+      "source_file": "src/components/DeleteTournamentButton.tsx",
+      "source_location": "L6",
+      "_origin": "ast",
+      "id": "components_deletetournamentbutton_deletetournamentbutton",
+      "community": 2,
+      "norm_label": "deletetournamentbutton()"
     },
     {
       "label": "LiveScore.tsx",
@@ -899,7 +1617,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "components_livescore",
-      "community": 8,
+      "community": 4,
       "norm_label": "livescore.tsx"
     },
     {
@@ -909,7 +1627,7 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "components_livescore_scoredata",
-      "community": 8,
+      "community": 4,
       "norm_label": "scoredata"
     },
     {
@@ -919,7 +1637,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "components_livescore_livescore",
-      "community": 8,
+      "community": 4,
       "norm_label": "livescore()"
     },
     {
@@ -929,7 +1647,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "components_livescorebanner",
-      "community": 9,
+      "community": 10,
       "norm_label": "livescorebanner.tsx"
     },
     {
@@ -939,7 +1657,7 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "components_livescorebanner_scoredata",
-      "community": 9,
+      "community": 10,
       "norm_label": "scoredata"
     },
     {
@@ -949,7 +1667,7 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "components_livescorebanner_livescorebanner",
-      "community": 9,
+      "community": 10,
       "norm_label": "livescorebanner()"
     },
     {
@@ -959,17 +1677,27 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "components_navbar",
-      "community": 7,
+      "community": 16,
       "norm_label": "navbar.tsx"
+    },
+    {
+      "label": "BoltIcon()",
+      "file_type": "code",
+      "source_file": "src/components/Navbar.tsx",
+      "source_location": "L7",
+      "_origin": "ast",
+      "id": "components_navbar_bolticon",
+      "community": 16,
+      "norm_label": "bolticon()"
     },
     {
       "label": "Navbar()",
       "file_type": "code",
       "source_file": "src/components/Navbar.tsx",
-      "source_location": "L5",
+      "source_location": "L21",
       "_origin": "ast",
       "id": "components_navbar_navbar",
-      "community": 7,
+      "community": 16,
       "norm_label": "navbar()"
     },
     {
@@ -979,7 +1707,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "components_sessionprovider",
-      "community": 7,
+      "community": 9,
       "norm_label": "sessionprovider.tsx"
     },
     {
@@ -989,8 +1717,278 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "components_sessionprovider_sessionprovider",
-      "community": 7,
+      "community": 9,
       "norm_label": "sessionprovider()"
+    },
+    {
+      "label": "Sidebar.tsx",
+      "file_type": "code",
+      "source_file": "src/components/Sidebar.tsx",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "components_sidebar",
+      "community": 7,
+      "norm_label": "sidebar.tsx"
+    },
+    {
+      "label": "BoltIcon()",
+      "file_type": "code",
+      "source_file": "src/components/Sidebar.tsx",
+      "source_location": "L7",
+      "_origin": "ast",
+      "id": "components_sidebar_bolticon",
+      "community": 7,
+      "norm_label": "bolticon()"
+    },
+    {
+      "label": "TrophyIcon()",
+      "file_type": "code",
+      "source_file": "src/components/Sidebar.tsx",
+      "source_location": "L15",
+      "_origin": "ast",
+      "id": "components_sidebar_trophyicon",
+      "community": 7,
+      "norm_label": "trophyicon()"
+    },
+    {
+      "label": "ShieldIcon()",
+      "file_type": "code",
+      "source_file": "src/components/Sidebar.tsx",
+      "source_location": "L28",
+      "_origin": "ast",
+      "id": "components_sidebar_shieldicon",
+      "community": 7,
+      "norm_label": "shieldicon()"
+    },
+    {
+      "label": "LogOutIcon()",
+      "file_type": "code",
+      "source_file": "src/components/Sidebar.tsx",
+      "source_location": "L36",
+      "_origin": "ast",
+      "id": "components_sidebar_logouticon",
+      "community": 7,
+      "norm_label": "logouticon()"
+    },
+    {
+      "label": "LogInIcon()",
+      "file_type": "code",
+      "source_file": "src/components/Sidebar.tsx",
+      "source_location": "L46",
+      "_origin": "ast",
+      "id": "components_sidebar_loginicon",
+      "community": 7,
+      "norm_label": "loginicon()"
+    },
+    {
+      "label": "ChevronLeftIcon()",
+      "file_type": "code",
+      "source_file": "src/components/Sidebar.tsx",
+      "source_location": "L56",
+      "_origin": "ast",
+      "id": "components_sidebar_chevronlefticon",
+      "community": 7,
+      "norm_label": "chevronlefticon()"
+    },
+    {
+      "label": "ChevronRightIcon()",
+      "file_type": "code",
+      "source_file": "src/components/Sidebar.tsx",
+      "source_location": "L64",
+      "_origin": "ast",
+      "id": "components_sidebar_chevronrighticon",
+      "community": 7,
+      "norm_label": "chevronrighticon()"
+    },
+    {
+      "label": "XIcon()",
+      "file_type": "code",
+      "source_file": "src/components/Sidebar.tsx",
+      "source_location": "L72",
+      "_origin": "ast",
+      "id": "components_sidebar_xicon",
+      "community": 7,
+      "norm_label": "xicon()"
+    },
+    {
+      "label": "CS2Icon()",
+      "file_type": "code",
+      "source_file": "src/components/Sidebar.tsx",
+      "source_location": "L81",
+      "_origin": "ast",
+      "id": "components_sidebar_cs2icon",
+      "community": 7,
+      "norm_label": "cs2icon()"
+    },
+    {
+      "label": "NavItemProps",
+      "file_type": "code",
+      "source_file": "src/components/Sidebar.tsx",
+      "source_location": "L91",
+      "_origin": "ast",
+      "id": "components_sidebar_navitemprops",
+      "community": 7,
+      "norm_label": "navitemprops"
+    },
+    {
+      "label": "NavItem()",
+      "file_type": "code",
+      "source_file": "src/components/Sidebar.tsx",
+      "source_location": "L100",
+      "_origin": "ast",
+      "id": "components_sidebar_navitem",
+      "community": 7,
+      "norm_label": "navitem()"
+    },
+    {
+      "label": "SidebarProps",
+      "file_type": "code",
+      "source_file": "src/components/Sidebar.tsx",
+      "source_location": "L124",
+      "_origin": "ast",
+      "id": "components_sidebar_sidebarprops",
+      "community": 7,
+      "norm_label": "sidebarprops"
+    },
+    {
+      "label": "Sidebar()",
+      "file_type": "code",
+      "source_file": "src/components/Sidebar.tsx",
+      "source_location": "L131",
+      "_origin": "ast",
+      "id": "components_sidebar_sidebar",
+      "community": 7,
+      "norm_label": "sidebar()"
+    },
+    {
+      "label": "Skeleton.tsx",
+      "file_type": "code",
+      "source_file": "src/components/Skeleton.tsx",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "components_skeleton",
+      "community": 11,
+      "norm_label": "skeleton.tsx"
+    },
+    {
+      "label": "SkeletonBlock()",
+      "file_type": "code",
+      "source_file": "src/components/Skeleton.tsx",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "components_skeleton_skeletonblock",
+      "community": 11,
+      "norm_label": "skeletonblock()"
+    },
+    {
+      "label": "SkeletonCard()",
+      "file_type": "code",
+      "source_file": "src/components/Skeleton.tsx",
+      "source_location": "L5",
+      "_origin": "ast",
+      "id": "components_skeleton_skeletoncard",
+      "community": 11,
+      "norm_label": "skeletoncard()"
+    },
+    {
+      "label": "SkeletonMatchCard()",
+      "file_type": "code",
+      "source_file": "src/components/Skeleton.tsx",
+      "source_location": "L18",
+      "_origin": "ast",
+      "id": "components_skeleton_skeletonmatchcard",
+      "community": 11,
+      "norm_label": "skeletonmatchcard()"
+    },
+    {
+      "label": "Standings.tsx",
+      "file_type": "code",
+      "source_file": "src/components/Standings.tsx",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "components_standings",
+      "community": 4,
+      "norm_label": "standings.tsx"
+    },
+    {
+      "label": "Team",
+      "file_type": "code",
+      "source_file": "src/components/Standings.tsx",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "components_standings_team",
+      "community": 4,
+      "norm_label": "team"
+    },
+    {
+      "label": "Match",
+      "file_type": "code",
+      "source_file": "src/components/Standings.tsx",
+      "source_location": "L7",
+      "_origin": "ast",
+      "id": "components_standings_match",
+      "community": 4,
+      "norm_label": "match"
+    },
+    {
+      "label": "Standings()",
+      "file_type": "code",
+      "source_file": "src/components/Standings.tsx",
+      "source_location": "L16",
+      "_origin": "ast",
+      "id": "components_standings_standings",
+      "community": 4,
+      "norm_label": "standings()"
+    },
+    {
+      "label": "TeamRoster.tsx",
+      "file_type": "code",
+      "source_file": "src/components/TeamRoster.tsx",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "components_teamroster",
+      "community": 2,
+      "norm_label": "teamroster.tsx"
+    },
+    {
+      "label": "Player",
+      "file_type": "code",
+      "source_file": "src/components/TeamRoster.tsx",
+      "source_location": "L6",
+      "_origin": "ast",
+      "id": "components_teamroster_player",
+      "community": 2,
+      "norm_label": "player"
+    },
+    {
+      "label": "TeamRoster()",
+      "file_type": "code",
+      "source_file": "src/components/TeamRoster.tsx",
+      "source_location": "L8",
+      "_origin": "ast",
+      "id": "components_teamroster_teamroster",
+      "community": 2,
+      "norm_label": "teamroster()"
+    },
+    {
+      "label": "TournamentStatusControl.tsx",
+      "file_type": "code",
+      "source_file": "src/components/TournamentStatusControl.tsx",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "components_tournamentstatuscontrol",
+      "community": 2,
+      "norm_label": "tournamentstatuscontrol.tsx"
+    },
+    {
+      "label": "TournamentStatusControl()",
+      "file_type": "code",
+      "source_file": "src/components/TournamentStatusControl.tsx",
+      "source_location": "L5",
+      "_origin": "ast",
+      "id": "components_tournamentstatuscontrol_tournamentstatuscontrol",
+      "community": 2,
+      "norm_label": "tournamentstatuscontrol()"
     },
     {
       "label": "auth.ts",
@@ -1043,13 +2041,43 @@
       "norm_label": "globalforprisma"
     },
     {
+      "label": "ratelimit.ts",
+      "file_type": "code",
+      "source_file": "src/lib/ratelimit.ts",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "lib_ratelimit",
+      "community": 12,
+      "norm_label": "ratelimit.ts"
+    },
+    {
+      "label": "requests",
+      "file_type": "code",
+      "source_file": "src/lib/ratelimit.ts",
+      "source_location": "L2",
+      "_origin": "ast",
+      "id": "lib_ratelimit_requests",
+      "community": 12,
+      "norm_label": "requests"
+    },
+    {
+      "label": "rateLimit()",
+      "file_type": "code",
+      "source_file": "src/lib/ratelimit.ts",
+      "source_location": "L4",
+      "_origin": "ast",
+      "id": "lib_ratelimit_ratelimit",
+      "community": 12,
+      "norm_label": "ratelimit()"
+    },
+    {
       "label": "tsconfig.json",
       "file_type": "code",
       "source_file": "tsconfig.json",
       "source_location": "L1",
       "_origin": "ast",
       "id": "tsconfig",
-      "community": 1,
+      "community": 6,
       "norm_label": "tsconfig.json"
     },
     {
@@ -1059,7 +2087,7 @@
       "source_location": "L2",
       "_origin": "ast",
       "id": "tsconfig_compileroptions",
-      "community": 1,
+      "community": 6,
       "norm_label": "compileroptions"
     },
     {
@@ -1069,7 +2097,7 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "tsconfig_compileroptions_target",
-      "community": 1,
+      "community": 6,
       "norm_label": "target"
     },
     {
@@ -1079,7 +2107,7 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "tsconfig_compileroptions_lib",
-      "community": 1,
+      "community": 6,
       "norm_label": "lib"
     },
     {
@@ -1089,7 +2117,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "tsconfig_compileroptions_allowjs",
-      "community": 1,
+      "community": 6,
       "norm_label": "allowjs"
     },
     {
@@ -1099,7 +2127,7 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "tsconfig_compileroptions_skiplibcheck",
-      "community": 1,
+      "community": 6,
       "norm_label": "skiplibcheck"
     },
     {
@@ -1109,7 +2137,7 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "tsconfig_compileroptions_strict",
-      "community": 1,
+      "community": 6,
       "norm_label": "strict"
     },
     {
@@ -1119,7 +2147,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "tsconfig_compileroptions_noemit",
-      "community": 1,
+      "community": 6,
       "norm_label": "noemit"
     },
     {
@@ -1129,7 +2157,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "tsconfig_compileroptions_esmoduleinterop",
-      "community": 1,
+      "community": 6,
       "norm_label": "esmoduleinterop"
     },
     {
@@ -1139,7 +2167,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "tsconfig_compileroptions_module",
-      "community": 1,
+      "community": 6,
       "norm_label": "module"
     },
     {
@@ -1149,7 +2177,7 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "tsconfig_compileroptions_moduleresolution",
-      "community": 1,
+      "community": 6,
       "norm_label": "moduleresolution"
     },
     {
@@ -1159,7 +2187,7 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "tsconfig_compileroptions_resolvejsonmodule",
-      "community": 1,
+      "community": 6,
       "norm_label": "resolvejsonmodule"
     },
     {
@@ -1169,7 +2197,7 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "tsconfig_compileroptions_isolatedmodules",
-      "community": 1,
+      "community": 6,
       "norm_label": "isolatedmodules"
     },
     {
@@ -1179,7 +2207,7 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "tsconfig_compileroptions_jsx",
-      "community": 1,
+      "community": 6,
       "norm_label": "jsx"
     },
     {
@@ -1189,7 +2217,7 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "tsconfig_compileroptions_incremental",
-      "community": 1,
+      "community": 6,
       "norm_label": "incremental"
     },
     {
@@ -1199,7 +2227,7 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "tsconfig_compileroptions_plugins",
-      "community": 1,
+      "community": 6,
       "norm_label": "plugins"
     },
     {
@@ -1209,7 +2237,7 @@
       "source_location": "L21",
       "_origin": "ast",
       "id": "tsconfig_compileroptions_paths",
-      "community": 1,
+      "community": 6,
       "norm_label": "paths"
     },
     {
@@ -1219,7 +2247,7 @@
       "source_location": "L22",
       "_origin": "ast",
       "id": "tsconfig_paths",
-      "community": 1,
+      "community": 6,
       "norm_label": "@/*"
     },
     {
@@ -1229,7 +2257,7 @@
       "source_location": "L25",
       "_origin": "ast",
       "id": "tsconfig_include",
-      "community": 1,
+      "community": 6,
       "norm_label": "include"
     },
     {
@@ -1239,7 +2267,7 @@
       "source_location": "L33",
       "_origin": "ast",
       "id": "tsconfig_exclude",
-      "community": 1,
+      "community": 6,
       "norm_label": "exclude"
     },
     {
@@ -1252,8 +2280,21 @@
       "author": null,
       "contributor": null,
       "id": "agents_md",
-      "community": 2,
+      "community": 8,
       "norm_label": "agents.md - next.js agent rules"
+    },
+    {
+      "label": "Rationale: Next.js may have breaking changes vs training data",
+      "file_type": "rationale",
+      "source_file": "AGENTS.md",
+      "source_location": "line 3",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "nextjs_breaking_changes_rationale",
+      "community": 8,
+      "norm_label": "rationale: next.js may have breaking changes vs training data"
     },
     {
       "label": "CLAUDE.md - Claude Code Instructions",
@@ -1265,7 +2306,7 @@
       "author": null,
       "contributor": null,
       "id": "claude_md",
-      "community": 2,
+      "community": 8,
       "norm_label": "claude.md - claude code instructions"
     },
     {
@@ -1278,7 +2319,7 @@
       "author": null,
       "contributor": null,
       "id": "readme_md",
-      "community": 2,
+      "community": 8,
       "norm_label": "readme.md - cupslog next.js project"
     },
     {
@@ -1291,7 +2332,7 @@
       "author": null,
       "contributor": null,
       "id": "cupslog_project",
-      "community": 2,
+      "community": 8,
       "norm_label": "cupslog - next.js application"
     },
     {
@@ -1304,7 +2345,7 @@
       "author": null,
       "contributor": null,
       "id": "nextjs_framework",
-      "community": 2,
+      "community": 8,
       "norm_label": "next.js framework"
     },
     {
@@ -1317,7 +2358,7 @@
       "author": null,
       "contributor": null,
       "id": "vercel_platform",
-      "community": 2,
+      "community": 8,
       "norm_label": "vercel deployment platform"
     },
     {
@@ -1330,21 +2371,8 @@
       "author": null,
       "contributor": null,
       "id": "geist_font",
-      "community": 2,
+      "community": 8,
       "norm_label": "geist font (vercel)"
-    },
-    {
-      "label": "Rationale: Next.js may have breaking changes vs training data",
-      "file_type": "rationale",
-      "source_file": "AGENTS.md",
-      "source_location": "line 3",
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "nextjs_breaking_changes_rationale",
-      "community": 2,
-      "norm_label": "rationale: next.js may have breaking changes vs training data"
     },
     {
       "label": "File Icon SVG (document/file icon)",
@@ -1356,7 +2384,7 @@
       "author": null,
       "contributor": null,
       "id": "public_file_svg",
-      "community": 2,
+      "community": 8,
       "norm_label": "file icon svg (document/file icon)"
     },
     {
@@ -1369,7 +2397,7 @@
       "author": null,
       "contributor": null,
       "id": "public_globe_svg",
-      "community": 2,
+      "community": 8,
       "norm_label": "globe icon svg (web/internet icon)"
     },
     {
@@ -1382,7 +2410,7 @@
       "author": null,
       "contributor": null,
       "id": "public_next_svg",
-      "community": 2,
+      "community": 8,
       "norm_label": "next.js wordmark svg logo"
     },
     {
@@ -1395,7 +2423,7 @@
       "author": null,
       "contributor": null,
       "id": "public_vercel_svg",
-      "community": 2,
+      "community": 8,
       "norm_label": "vercel triangle logo svg"
     },
     {
@@ -1408,11 +2436,528 @@
       "author": null,
       "contributor": null,
       "id": "public_window_svg",
-      "community": 2,
+      "community": 8,
       "norm_label": "browser window icon svg"
+    },
+    {
+      "label": "Prisma Driver Adapter Implementation",
+      "type": "skill",
+      "source_location": "SKILL.md",
+      "confidence": "EXTRACTED",
+      "properties": {
+        "version": "7.6.0",
+        "author": "Tyler Benfield",
+        "license": "MIT"
+      },
+      "file_type": "concept",
+      "id": "prisma_driver_adapter_implementation",
+      "community": 3,
+      "norm_label": "prisma driver adapter implementation"
+    },
+    {
+      "label": "Prisma ORM v7",
+      "type": "tool",
+      "source_location": "SKILL.md:Architecture Overview",
+      "confidence": "EXTRACTED",
+      "properties": {},
+      "file_type": "concept",
+      "id": "prisma_v7",
+      "community": 3,
+      "norm_label": "prisma orm v7"
+    },
+    {
+      "label": "PrismaClient",
+      "type": "component",
+      "source_location": "SKILL.md:Architecture Overview",
+      "confidence": "EXTRACTED",
+      "properties": {
+        "requires": "adapter factory"
+      },
+      "file_type": "concept",
+      "id": "prisma_client",
+      "community": 1,
+      "norm_label": "prismaclient"
+    },
+    {
+      "label": "@prisma/driver-adapter-utils",
+      "type": "tool",
+      "source_location": "SKILL.md:Required Interfaces",
+      "confidence": "EXTRACTED",
+      "properties": {},
+      "file_type": "concept",
+      "id": "prisma_driver_adapter_utils",
+      "community": 1,
+      "norm_label": "@prisma/driver-adapter-utils"
+    },
+    {
+      "label": "SqlMigrationAwareDriverAdapterFactory",
+      "type": "component",
+      "source_location": "SKILL.md:Interface Definitions",
+      "confidence": "EXTRACTED",
+      "properties": {
+        "methods": [
+          "connect()",
+          "connectToShadowDb()"
+        ],
+        "providers": [
+          "mysql",
+          "postgres",
+          "sqlite",
+          "sqlserver"
+        ]
+      },
+      "file_type": "concept",
+      "id": "sql_migration_aware_driver_adapter_factory",
+      "community": 1,
+      "norm_label": "sqlmigrationawaredriveradapterfactory"
+    },
+    {
+      "label": "SqlDriverAdapter",
+      "type": "component",
+      "source_location": "SKILL.md:Interface Definitions",
+      "confidence": "EXTRACTED",
+      "properties": {
+        "methods": [
+          "queryRaw()",
+          "executeRaw()",
+          "executeScript()",
+          "startTransaction()",
+          "dispose()",
+          "getConnectionInfo()"
+        ]
+      },
+      "file_type": "concept",
+      "id": "sql_driver_adapter",
+      "community": 1,
+      "norm_label": "sqldriveradapter"
+    },
+    {
+      "label": "SqlQueryable",
+      "type": "component",
+      "source_location": "SKILL.md:Interface Definitions",
+      "confidence": "EXTRACTED",
+      "properties": {},
+      "file_type": "concept",
+      "id": "sql_queryable",
+      "community": 1,
+      "norm_label": "sqlqueryable"
+    },
+    {
+      "label": "Transaction",
+      "type": "component",
+      "source_location": "SKILL.md:Interface Definitions",
+      "confidence": "EXTRACTED",
+      "properties": {
+        "methods": [
+          "commit()",
+          "rollback()"
+        ],
+        "note": "lifecycle hooks only \u2014 Prisma sends SQL via executeRaw"
+      },
+      "file_type": "concept",
+      "id": "transaction",
+      "community": 1,
+      "norm_label": "transaction"
+    },
+    {
+      "label": "TransactionOptions",
+      "type": "concept",
+      "source_location": "SKILL.md:Interface Definitions",
+      "confidence": "EXTRACTED",
+      "properties": {
+        "fields": [
+          "usePhantomQuery: boolean"
+        ]
+      },
+      "file_type": "concept",
+      "id": "transaction_options",
+      "community": 1,
+      "norm_label": "transactionoptions"
+    },
+    {
+      "label": "SqlQuery",
+      "type": "concept",
+      "source_location": "SKILL.md:Interface Definitions",
+      "confidence": "EXTRACTED",
+      "properties": {
+        "fields": [
+          "sql: string",
+          "args: Array<unknown>",
+          "argTypes: Array<ArgType>"
+        ]
+      },
+      "file_type": "concept",
+      "id": "sql_query",
+      "community": 1,
+      "norm_label": "sqlquery"
+    },
+    {
+      "label": "SqlResultSet",
+      "type": "concept",
+      "source_location": "SKILL.md:Interface Definitions",
+      "confidence": "EXTRACTED",
+      "properties": {
+        "fields": [
+          "columnNames",
+          "columnTypes",
+          "rows",
+          "lastInsertId?"
+        ]
+      },
+      "file_type": "concept",
+      "id": "sql_result_set",
+      "community": 1,
+      "norm_label": "sqlresultset"
+    },
+    {
+      "label": "ColumnTypeEnum",
+      "type": "concept",
+      "source_location": "SKILL.md:Interface Definitions",
+      "confidence": "EXTRACTED",
+      "properties": {
+        "values": [
+          "Int32",
+          "Int64",
+          "Float",
+          "Double",
+          "Numeric",
+          "Boolean",
+          "Character",
+          "Text",
+          "Date",
+          "Time",
+          "DateTime",
+          "Json",
+          "Enum",
+          "Bytes",
+          "Set",
+          "Uuid",
+          "array variants",
+          "UnknownNumber"
+        ]
+      },
+      "file_type": "concept",
+      "id": "column_type_enum",
+      "community": 1,
+      "norm_label": "columntypeenum"
+    },
+    {
+      "label": "ArgType",
+      "type": "concept",
+      "source_location": "SKILL.md:Interface Definitions",
+      "confidence": "EXTRACTED",
+      "properties": {
+        "fields": [
+          "scalarType",
+          "dbType?",
+          "arity"
+        ]
+      },
+      "file_type": "concept",
+      "id": "arg_type",
+      "community": 1,
+      "norm_label": "argtype"
+    },
+    {
+      "label": "ConnectionInfo",
+      "type": "concept",
+      "source_location": "SKILL.md:Interface Definitions",
+      "confidence": "EXTRACTED",
+      "properties": {
+        "fields": [
+          "supportsRelationJoins"
+        ]
+      },
+      "file_type": "concept",
+      "id": "connection_info",
+      "community": 1,
+      "norm_label": "connectioninfo"
+    },
+    {
+      "label": "MappedError",
+      "type": "concept",
+      "source_location": "SKILL.md:Error Handling",
+      "confidence": "EXTRACTED",
+      "properties": {
+        "kinds": [
+          "UniqueConstraintViolation",
+          "NullConstraintViolation",
+          "ForeignKeyConstraintViolation",
+          "TableDoesNotExist",
+          "InvalidIsolationLevel",
+          "sqlite",
+          "postgres",
+          "GenericJs"
+        ]
+      },
+      "file_type": "concept",
+      "id": "mapped_error",
+      "community": 1,
+      "norm_label": "mappederror"
+    },
+    {
+      "label": "DriverAdapterError",
+      "type": "component",
+      "source_location": "SKILL.md:Error Handling",
+      "confidence": "EXTRACTED",
+      "properties": {},
+      "file_type": "concept",
+      "id": "driver_adapter_error",
+      "community": 1,
+      "norm_label": "driveradaptererror"
+    },
+    {
+      "label": "IsolationLevel",
+      "type": "concept",
+      "source_location": "SKILL.md:Interface Definitions",
+      "confidence": "EXTRACTED",
+      "properties": {
+        "values": [
+          "READ UNCOMMITTED",
+          "READ COMMITTED",
+          "REPEATABLE READ",
+          "SERIALIZABLE"
+        ]
+      },
+      "file_type": "concept",
+      "id": "isolation_level",
+      "community": 1,
+      "norm_label": "isolationlevel"
+    },
+    {
+      "label": "MyQueryable (Queryable Base Class)",
+      "type": "component",
+      "source_location": "SKILL.md:Implementation Steps",
+      "confidence": "EXTRACTED",
+      "properties": {
+        "step": 1,
+        "implements": "SqlQueryable"
+      },
+      "file_type": "concept",
+      "id": "queryable_base_class",
+      "community": 1,
+      "norm_label": "myqueryable (queryable base class)"
+    },
+    {
+      "label": "MyTransaction (Transaction Class)",
+      "type": "component",
+      "source_location": "SKILL.md:Implementation Steps",
+      "confidence": "EXTRACTED",
+      "properties": {
+        "step": 2
+      },
+      "file_type": "concept",
+      "id": "transaction_class",
+      "community": 1,
+      "norm_label": "mytransaction (transaction class)"
+    },
+    {
+      "label": "MyAdapter (Adapter Class)",
+      "type": "component",
+      "source_location": "SKILL.md:Implementation Steps",
+      "confidence": "EXTRACTED",
+      "properties": {
+        "step": 3
+      },
+      "file_type": "concept",
+      "id": "adapter_class",
+      "community": 1,
+      "norm_label": "myadapter (adapter class)"
+    },
+    {
+      "label": "MyAdapterFactory (Factory Class)",
+      "type": "component",
+      "source_location": "SKILL.md:Implementation Steps",
+      "confidence": "EXTRACTED",
+      "properties": {
+        "step": 4
+      },
+      "file_type": "concept",
+      "id": "factory_class",
+      "community": 1,
+      "norm_label": "myadapterfactory (factory class)"
+    },
+    {
+      "label": "Argument Mapping (mapArg)",
+      "type": "concept",
+      "source_location": "SKILL.md:Conversion Helpers",
+      "confidence": "EXTRACTED",
+      "properties": {
+        "conversions": [
+          "string\u2192int",
+          "string\u2192float",
+          "string\u2192bigint",
+          "base64\u2192bytes",
+          "boolean\u21920/1 for SQLite"
+        ]
+      },
+      "file_type": "concept",
+      "id": "argument_mapping",
+      "community": 1,
+      "norm_label": "argument mapping (maparg)"
+    },
+    {
+      "label": "Row Mapping (mapRow)",
+      "type": "concept",
+      "source_location": "SKILL.md:Conversion Helpers",
+      "confidence": "EXTRACTED",
+      "properties": {
+        "conversions": [
+          "bigint\u2192string",
+          "Date\u2192ISO 8601 string",
+          "JSON objects\u2192stringified"
+        ]
+      },
+      "file_type": "concept",
+      "id": "row_mapping",
+      "community": 1,
+      "norm_label": "row mapping (maprow)"
+    },
+    {
+      "label": "Column Type Inference (inferColumnType)",
+      "type": "concept",
+      "source_location": "SKILL.md:Conversion Helpers",
+      "confidence": "EXTRACTED",
+      "properties": {},
+      "file_type": "concept",
+      "id": "column_type_inference",
+      "community": 1,
+      "norm_label": "column type inference (infercolumntype)"
+    },
+    {
+      "label": "SQLite Database Support",
+      "type": "topic",
+      "source_location": "SKILL.md:Database-Specific Notes",
+      "confidence": "EXTRACTED",
+      "properties": {
+        "notes": [
+          "safeIntegers: true",
+          "SERIALIZABLE only",
+          "split on ';' for executeScript",
+          "boolean as 0/1"
+        ]
+      },
+      "file_type": "concept",
+      "id": "sqlite_support",
+      "community": 3,
+      "norm_label": "sqlite database support"
+    },
+    {
+      "label": "PostgreSQL Database Support",
+      "type": "topic",
+      "source_location": "SKILL.md:Database-Specific Notes",
+      "confidence": "EXTRACTED",
+      "properties": {
+        "notes": [
+          "all isolation levels valid",
+          "PgBouncer prepare:false",
+          "dedicated connection for transactions",
+          "multi-statement executeScript"
+        ]
+      },
+      "file_type": "concept",
+      "id": "postgresql_support",
+      "community": 3,
+      "norm_label": "postgresql database support"
+    },
+    {
+      "label": "MySQL/MariaDB Database Support",
+      "type": "topic",
+      "source_location": "SKILL.md:Database-Specific Notes",
+      "confidence": "EXTRACTED",
+      "properties": {
+        "notes": [
+          "? placeholders",
+          "BIGINT as string"
+        ]
+      },
+      "file_type": "concept",
+      "id": "mysql_mariadb_support",
+      "community": 3,
+      "norm_label": "mysql/mariadb database support"
+    },
+    {
+      "label": "Unit Testing (no PrismaClient)",
+      "type": "concept",
+      "source_location": "SKILL.md:Testing Strategy",
+      "confidence": "EXTRACTED",
+      "properties": {},
+      "file_type": "concept",
+      "id": "unit_testing",
+      "community": 1,
+      "norm_label": "unit testing (no prismaclient)"
+    },
+    {
+      "label": "E2E Testing (with PrismaClient)",
+      "type": "concept",
+      "source_location": "SKILL.md:Testing Strategy",
+      "confidence": "EXTRACTED",
+      "properties": {},
+      "file_type": "concept",
+      "id": "e2e_testing",
+      "community": 1,
+      "norm_label": "e2e testing (with prismaclient)"
+    },
+    {
+      "label": "Savepoint (nested transactions)",
+      "type": "concept",
+      "source_location": "SKILL.md:Implementation Steps",
+      "confidence": "EXTRACTED",
+      "properties": {
+        "pattern": "SAVEPOINT sp_N for depth > 1"
+      },
+      "file_type": "concept",
+      "id": "savepoint",
+      "community": 1,
+      "norm_label": "savepoint (nested transactions)"
+    },
+    {
+      "label": "PgBouncer (connection pooling)",
+      "type": "tool",
+      "source_location": "SKILL.md:Database-Specific Notes",
+      "confidence": "EXTRACTED",
+      "properties": {
+        "setting": "prepare: false"
+      },
+      "file_type": "concept",
+      "id": "pgbouncer",
+      "community": 3,
+      "norm_label": "pgbouncer (connection pooling)"
+    },
+    {
+      "label": "TypeScript",
+      "type": "tool",
+      "source_location": "SKILL.md",
+      "confidence": "EXTRACTED",
+      "properties": {},
+      "file_type": "concept",
+      "id": "typescript",
+      "community": 3,
+      "norm_label": "typescript"
+    },
+    {
+      "label": "Adapter Implementation Checklist",
+      "type": "concept",
+      "source_location": "SKILL.md:Checklist",
+      "confidence": "EXTRACTED",
+      "properties": {},
+      "file_type": "concept",
+      "id": "implementation_checklist",
+      "community": 3,
+      "norm_label": "adapter implementation checklist"
     }
   ],
   "links": [
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".graphify-watch.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "graphify_watch",
+      "target": "home_yan_projects_cupslog_graphify_watch_sh__entry",
+      "confidence_score": 1.0
+    },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
@@ -1421,6 +2966,17 @@
       "weight": 1.0,
       "source": "eslint_config",
       "target": "eslint_config_eslintconfig",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "eslint.config.mjs",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "eslint_config",
+      "target": "typescript",
       "confidence_score": 1.0
     },
     {
@@ -1447,7 +3003,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "package.json",
-      "source_location": "L23",
+      "source_location": "L25",
       "weight": 1.0,
       "source": "package",
       "target": "package_devdependencies",
@@ -1637,20 +3193,31 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "package.json",
-      "source_location": "L30",
+      "source_location": "L22",
       "weight": 1.0,
-      "source": "package_devdependencies",
-      "target": "package_devdependencies_eslint",
+      "source": "package_dependencies",
+      "target": "package_dependencies_sonner",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "package.json",
-      "source_location": "L31",
+      "source_location": "L23",
       "weight": 1.0,
-      "source": "package_devdependencies",
-      "target": "package_devdependencies_eslint_config_next",
+      "source": "package_dependencies",
+      "target": "package_dependencies_zod",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L14",
+      "weight": 1.0,
+      "context": "import",
+      "source": "package_dependencies_prisma_client",
+      "target": "prisma_client",
       "confidence_score": 1.0
     },
     {
@@ -1660,17 +3227,7 @@
       "source_location": "L32",
       "weight": 1.0,
       "source": "package_devdependencies",
-      "target": "package_devdependencies_tailwindcss",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "package.json",
-      "source_location": "L24",
-      "weight": 1.0,
-      "source": "package_devdependencies",
-      "target": "package_devdependencies_tailwindcss_postcss",
+      "target": "package_devdependencies_eslint",
       "confidence_score": 1.0
     },
     {
@@ -1680,57 +3237,7 @@
       "source_location": "L33",
       "weight": 1.0,
       "source": "package_devdependencies",
-      "target": "package_devdependencies_tsx",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "package.json",
-      "source_location": "L25",
-      "weight": 1.0,
-      "source": "package_devdependencies",
-      "target": "package_devdependencies_types_bcryptjs",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "package.json",
-      "source_location": "L26",
-      "weight": 1.0,
-      "source": "package_devdependencies",
-      "target": "package_devdependencies_types_node",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "package.json",
-      "source_location": "L27",
-      "weight": 1.0,
-      "source": "package_devdependencies",
-      "target": "package_devdependencies_types_pg",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "package.json",
-      "source_location": "L28",
-      "weight": 1.0,
-      "source": "package_devdependencies",
-      "target": "package_devdependencies_types_react",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "package.json",
-      "source_location": "L29",
-      "weight": 1.0,
-      "source": "package_devdependencies",
-      "target": "package_devdependencies_types_react_dom",
+      "target": "package_devdependencies_eslint_config_next",
       "confidence_score": 1.0
     },
     {
@@ -1740,7 +3247,98 @@
       "source_location": "L34",
       "weight": 1.0,
       "source": "package_devdependencies",
+      "target": "package_devdependencies_tailwindcss",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L26",
+      "weight": 1.0,
+      "source": "package_devdependencies",
+      "target": "package_devdependencies_tailwindcss_postcss",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L35",
+      "weight": 1.0,
+      "source": "package_devdependencies",
+      "target": "package_devdependencies_tsx",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L27",
+      "weight": 1.0,
+      "source": "package_devdependencies",
+      "target": "package_devdependencies_types_bcryptjs",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L28",
+      "weight": 1.0,
+      "source": "package_devdependencies",
+      "target": "package_devdependencies_types_node",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L29",
+      "weight": 1.0,
+      "source": "package_devdependencies",
+      "target": "package_devdependencies_types_pg",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L30",
+      "weight": 1.0,
+      "source": "package_devdependencies",
+      "target": "package_devdependencies_types_react",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L31",
+      "weight": 1.0,
+      "source": "package_devdependencies",
+      "target": "package_devdependencies_types_react_dom",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L36",
+      "weight": 1.0,
+      "source": "package_devdependencies",
       "target": "package_devdependencies_typescript",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L36",
+      "weight": 1.0,
+      "context": "import",
+      "source": "package_devdependencies_typescript",
+      "target": "typescript",
       "confidence_score": 1.0
     },
     {
@@ -1787,7 +3385,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/app/admin/page.tsx",
-      "source_location": "L8",
+      "source_location": "L14",
       "weight": 1.0,
       "source": "admin_page",
       "target": "admin_page_adminpage",
@@ -1820,6 +3418,50 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/app/admin/page.tsx",
+      "source_location": "L12",
+      "weight": 1.0,
+      "source": "admin_page",
+      "target": "components_changepasswordform",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/admin/page.tsx",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "admin_page",
+      "target": "components_creatematchform",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/admin/page.tsx",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "admin_page",
+      "target": "components_createteamform",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/admin/page.tsx",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "admin_page",
+      "target": "components_createteamform_createteamform",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/admin/page.tsx",
       "source_location": "L6",
       "weight": 1.0,
       "source": "admin_page",
@@ -1835,6 +3477,61 @@
       "weight": 1.0,
       "source": "admin_page",
       "target": "components_createtournamentform_createtournamentform",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/admin/page.tsx",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "admin_page",
+      "target": "components_deletetournamentbutton",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/admin/page.tsx",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "admin_page",
+      "target": "components_deletetournamentbutton_deletetournamentbutton",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/admin/page.tsx",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "admin_page",
+      "target": "components_teamroster",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/admin/page.tsx",
+      "source_location": "L10",
+      "weight": 1.0,
+      "source": "admin_page",
+      "target": "components_tournamentstatuscontrol",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/admin/page.tsx",
+      "source_location": "L10",
+      "weight": 1.0,
+      "source": "admin_page",
+      "target": "components_tournamentstatuscontrol_tournamentstatuscontrol",
       "confidence_score": 1.0
     },
     {
@@ -1867,6 +3564,59 @@
       "source_location": "L4",
       "weight": 1.0,
       "source": "admin_page",
+      "target": "lib_prisma",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/api/admin/change-password/route.ts",
+      "source_location": "L17",
+      "weight": 1.0,
+      "source": "change_password_route",
+      "target": "change_password_route_post",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/api/admin/change-password/route.ts",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "change_password_route",
+      "target": "change_password_route_schema",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/api/admin/change-password/route.ts",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "change_password_route",
+      "target": "lib_auth",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/api/admin/change-password/route.ts",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "change_password_route",
+      "target": "lib_auth_authoptions",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/api/admin/change-password/route.ts",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "change_password_route",
       "target": "lib_prisma",
       "confidence_score": 1.0
     },
@@ -1992,6 +3742,16 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/app/api/matches/[id]/route.ts",
+      "source_location": "L36",
+      "weight": 1.0,
+      "source": "src_app_api_matches_id_route_ts_id_route",
+      "target": "src_app_api_matches_id_route_ts_id_route_delete",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/api/matches/[id]/route.ts",
       "source_location": "L6",
       "weight": 1.0,
       "source": "src_app_api_matches_id_route_ts_id_route",
@@ -2026,7 +3786,7 @@
       "source_file": "src/app/api/matches/route.ts",
       "source_location": "L3",
       "weight": 1.0,
-      "source": "matches_route",
+      "source": "src_app_api_matches_route_ts_matches_route",
       "target": "lib_auth",
       "confidence_score": 1.0
     },
@@ -2037,7 +3797,7 @@
       "source_file": "src/app/api/matches/route.ts",
       "source_location": "L3",
       "weight": 1.0,
-      "source": "matches_route",
+      "source": "src_app_api_matches_route_ts_matches_route",
       "target": "lib_auth_authoptions",
       "confidence_score": 1.0
     },
@@ -2048,7 +3808,7 @@
       "source_file": "src/app/api/matches/route.ts",
       "source_location": "L4",
       "weight": 1.0,
-      "source": "matches_route",
+      "source": "src_app_api_matches_route_ts_matches_route",
       "target": "lib_prisma",
       "confidence_score": 1.0
     },
@@ -2058,8 +3818,134 @@
       "source_file": "src/app/api/matches/route.ts",
       "source_location": "L6",
       "weight": 1.0,
-      "source": "matches_route",
-      "target": "matches_route_post",
+      "source": "src_app_api_matches_route_ts_matches_route",
+      "target": "src_app_api_matches_route_ts_matches_route_post",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/api/teams/[id]/players/route.ts",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "players_route",
+      "target": "lib_auth",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/api/teams/[id]/players/route.ts",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "players_route",
+      "target": "lib_auth_authoptions",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/api/teams/[id]/players/route.ts",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "players_route",
+      "target": "lib_prisma",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/api/teams/[id]/players/route.ts",
+      "source_location": "L41",
+      "weight": 1.0,
+      "source": "players_route",
+      "target": "players_route_delete",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/api/teams/[id]/players/route.ts",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "players_route",
+      "target": "players_route_get",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/api/teams/[id]/players/route.ts",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "players_route",
+      "target": "players_route_playerschema",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/api/teams/[id]/players/route.ts",
+      "source_location": "L19",
+      "weight": 1.0,
+      "source": "players_route",
+      "target": "players_route_post",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/api/tournaments/[id]/matches/route.ts",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "src_app_api_tournaments_id_matches_route_ts_matches_route",
+      "target": "lib_auth",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/api/tournaments/[id]/matches/route.ts",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "src_app_api_tournaments_id_matches_route_ts_matches_route",
+      "target": "lib_auth_authoptions",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/api/tournaments/[id]/matches/route.ts",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "src_app_api_tournaments_id_matches_route_ts_matches_route",
+      "target": "lib_prisma",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/api/tournaments/[id]/matches/route.ts",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "src_app_api_tournaments_id_matches_route_ts_matches_route",
+      "target": "matches_route_matchschema",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/api/tournaments/[id]/matches/route.ts",
+      "source_location": "L20",
+      "weight": 1.0,
+      "source": "src_app_api_tournaments_id_matches_route_ts_matches_route",
+      "target": "src_app_api_tournaments_id_matches_route_ts_matches_route_post",
       "confidence_score": 1.0
     },
     {
@@ -2067,7 +3953,29 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/app/api/tournaments/[id]/route.ts",
-      "source_location": "L2",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "src_app_api_tournaments_id_route_ts_id_route",
+      "target": "lib_auth",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/api/tournaments/[id]/route.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "src_app_api_tournaments_id_route_ts_id_route",
+      "target": "lib_auth_authoptions",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/api/tournaments/[id]/route.ts",
+      "source_location": "L4",
       "weight": 1.0,
       "source": "src_app_api_tournaments_id_route_ts_id_route",
       "target": "lib_prisma",
@@ -2077,7 +3985,17 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/app/api/tournaments/[id]/route.ts",
-      "source_location": "L4",
+      "source_location": "L22",
+      "weight": 1.0,
+      "source": "src_app_api_tournaments_id_route_ts_id_route",
+      "target": "src_app_api_tournaments_id_route_ts_id_route_delete",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/api/tournaments/[id]/route.ts",
+      "source_location": "L6",
       "weight": 1.0,
       "source": "src_app_api_tournaments_id_route_ts_id_route",
       "target": "src_app_api_tournaments_id_route_ts_id_route_get",
@@ -2087,10 +4005,10 @@
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
-      "source_file": "src/app/api/tournaments/[id]/teams/route.ts",
+      "source_file": "src/app/api/tournaments/[id]/status/route.ts",
       "source_location": "L3",
       "weight": 1.0,
-      "source": "teams_route",
+      "source": "status_route",
       "target": "lib_auth",
       "confidence_score": 1.0
     },
@@ -2098,11 +4016,32 @@
       "relation": "imports",
       "context": "import",
       "confidence": "EXTRACTED",
-      "source_file": "src/app/api/tournaments/[id]/teams/route.ts",
+      "source_file": "src/app/api/tournaments/[id]/status/route.ts",
       "source_location": "L3",
       "weight": 1.0,
-      "source": "teams_route",
+      "source": "status_route",
       "target": "lib_auth_authoptions",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/api/tournaments/[id]/status/route.ts",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "status_route",
+      "target": "lib_prisma",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/api/tournaments/[id]/status/route.ts",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "status_route",
+      "target": "status_route_patch",
       "confidence_score": 1.0
     },
     {
@@ -2113,6 +4052,28 @@
       "source_location": "L4",
       "weight": 1.0,
       "source": "teams_route",
+      "target": "lib_auth",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/api/tournaments/[id]/teams/route.ts",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "teams_route",
+      "target": "lib_auth_authoptions",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/api/tournaments/[id]/teams/route.ts",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "teams_route",
       "target": "lib_prisma",
       "confidence_score": 1.0
     },
@@ -2120,32 +4081,20 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/app/api/tournaments/[id]/teams/route.ts",
-      "source_location": "L6",
+      "source_location": "L17",
       "weight": 1.0,
       "source": "teams_route",
       "target": "teams_route_post",
       "confidence_score": 1.0
     },
     {
-      "relation": "imports_from",
-      "context": "import",
+      "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": "src/app/api/tournaments/route.ts",
-      "source_location": "L3",
+      "source_file": "src/app/api/tournaments/[id]/teams/route.ts",
+      "source_location": "L7",
       "weight": 1.0,
-      "source": "tournaments_route",
-      "target": "lib_auth",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/app/api/tournaments/route.ts",
-      "source_location": "L3",
-      "weight": 1.0,
-      "source": "tournaments_route",
-      "target": "lib_auth_authoptions",
+      "source": "teams_route",
+      "target": "teams_route_teamschema",
       "confidence_score": 1.0
     },
     {
@@ -2156,17 +4105,29 @@
       "source_location": "L4",
       "weight": 1.0,
       "source": "tournaments_route",
-      "target": "lib_prisma",
+      "target": "lib_auth",
       "confidence_score": 1.0
     },
     {
-      "relation": "contains",
+      "relation": "imports",
+      "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/app/api/tournaments/route.ts",
-      "source_location": "L6",
+      "source_location": "L4",
       "weight": 1.0,
       "source": "tournaments_route",
-      "target": "tournaments_route_get",
+      "target": "lib_auth_authoptions",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/api/tournaments/route.ts",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "tournaments_route",
+      "target": "lib_prisma",
       "confidence_score": 1.0
     },
     {
@@ -2176,7 +4137,27 @@
       "source_location": "L14",
       "weight": 1.0,
       "source": "tournaments_route",
+      "target": "tournaments_route_get",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/api/tournaments/route.ts",
+      "source_location": "L22",
+      "weight": 1.0,
+      "source": "tournaments_route",
       "target": "tournaments_route_post",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/api/tournaments/route.ts",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "tournaments_route",
+      "target": "tournaments_route_tournamentschema",
       "confidence_score": 1.0
     },
     {
@@ -2191,10 +4172,32 @@
       "confidence_score": 1.0
     },
     {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/api/webhooks/matchzy/route.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "matchzy_route",
+      "target": "lib_ratelimit",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/api/webhooks/matchzy/route.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "matchzy_route",
+      "target": "lib_ratelimit_ratelimit",
+      "confidence_score": 1.0
+    },
+    {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/app/api/webhooks/matchzy/route.ts",
-      "source_location": "L4",
+      "source_location": "L5",
       "weight": 1.0,
       "source": "matchzy_route",
       "target": "matchzy_route_matchzyevent",
@@ -2204,17 +4207,48 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/app/api/webhooks/matchzy/route.ts",
-      "source_location": "L12",
+      "source_location": "L13",
       "weight": 1.0,
       "source": "matchzy_route",
       "target": "matchzy_route_post",
       "confidence_score": 1.0
     },
     {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/app/api/webhooks/matchzy/route.ts",
+      "source_location": "L15",
+      "weight": 1.0,
+      "source": "matchzy_route_post",
+      "target": "lib_ratelimit_ratelimit"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/error.tsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "app_error",
+      "target": "app_error_error",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/global-error.tsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "app_global_error",
+      "target": "app_global_error_globalerror",
+      "confidence_score": 1.0
+    },
+    {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/app/layout.tsx",
-      "source_location": "L7",
+      "source_location": "L8",
       "weight": 1.0,
       "source": "app_layout",
       "target": "app_layout_geist",
@@ -2224,7 +4258,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/app/layout.tsx",
-      "source_location": "L9",
+      "source_location": "L10",
       "weight": 1.0,
       "source": "app_layout",
       "target": "app_layout_metadata",
@@ -2234,10 +4268,31 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/app/layout.tsx",
-      "source_location": "L14",
+      "source_location": "L19",
       "weight": 1.0,
       "source": "app_layout",
       "target": "app_layout_rootlayout",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/layout.tsx",
+      "source_location": "L15",
+      "weight": 1.0,
+      "source": "app_layout",
+      "target": "app_layout_viewport",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/layout.tsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "app_layout",
+      "target": "components_appshell",
       "confidence_score": 1.0
     },
     {
@@ -2248,17 +4303,6 @@
       "source_location": "L5",
       "weight": 1.0,
       "source": "app_layout",
-      "target": "components_navbar",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/app/layout.tsx",
-      "source_location": "L4",
-      "weight": 1.0,
-      "source": "app_layout",
       "target": "components_sessionprovider",
       "confidence_score": 1.0
     },
@@ -2267,7 +4311,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/app/layout.tsx",
-      "source_location": "L4",
+      "source_location": "L5",
       "weight": 1.0,
       "source": "app_layout",
       "target": "components_sessionprovider_sessionprovider",
@@ -2288,7 +4332,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/app/matches/[id]/page.tsx",
-      "source_location": "L3",
+      "source_location": "L4",
       "weight": 1.0,
       "source": "src_app_matches_id_page_tsx_id_page",
       "target": "components_livescorebanner",
@@ -2299,7 +4343,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/app/matches/[id]/page.tsx",
-      "source_location": "L3",
+      "source_location": "L4",
       "weight": 1.0,
       "source": "src_app_matches_id_page_tsx_id_page",
       "target": "components_livescorebanner_livescorebanner",
@@ -2309,7 +4353,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/app/matches/[id]/page.tsx",
-      "source_location": "L7",
+      "source_location": "L53",
       "weight": 1.0,
       "source": "src_app_matches_id_page_tsx_id_page",
       "target": "id_page_matchpage",
@@ -2320,10 +4364,102 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/app/matches/[id]/page.tsx",
-      "source_location": "L2",
+      "source_location": "L3",
       "weight": 1.0,
       "source": "src_app_matches_id_page_tsx_id_page",
       "target": "lib_prisma",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/matches/[id]/page.tsx",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "src_app_matches_id_page_tsx_id_page",
+      "target": "src_app_matches_id_page_tsx_id_page_generatemetadata",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/matches/[id]/page.tsx",
+      "source_location": "L28",
+      "weight": 1.0,
+      "source": "src_app_matches_id_page_tsx_id_page",
+      "target": "src_app_matches_id_page_tsx_id_page_matchstatus",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/matches/[id]/page.tsx",
+      "source_location": "L30",
+      "weight": 1.0,
+      "source": "src_app_matches_id_page_tsx_id_page",
+      "target": "src_app_matches_id_page_tsx_id_page_matchstatusbadge",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "src/app/matches/[id]/page.tsx",
+      "source_location": "L64",
+      "weight": 1.0,
+      "source": "id_page_matchpage",
+      "target": "app_not_found_notfound"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/not-found.tsx",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "app_not_found",
+      "target": "app_not_found_notfound",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "src/app/tournaments/[id]/page.tsx",
+      "source_location": "L110",
+      "weight": 1.0,
+      "source": "id_page_tournamentpage",
+      "target": "app_not_found_notfound"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/page.tsx",
+      "source_location": "L31",
+      "weight": 1.0,
+      "source": "app_page",
+      "target": "app_page_emptystate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/page.tsx",
+      "source_location": "L53",
+      "weight": 1.0,
+      "source": "app_page",
+      "target": "app_page_homepage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/page.tsx",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "app_page",
+      "target": "app_page_statusbadge",
       "confidence_score": 1.0
     },
     {
@@ -2333,7 +4469,7 @@
       "source_location": "L6",
       "weight": 1.0,
       "source": "app_page",
-      "target": "app_page_homepage",
+      "target": "app_page_tournamentstatus",
       "confidence_score": 1.0
     },
     {
@@ -2351,8 +4487,62 @@
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
+      "source_file": "src/app/tournaments/[id]/loading.tsx",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "id_loading",
+      "target": "components_skeleton",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/tournaments/[id]/loading.tsx",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "id_loading",
+      "target": "components_skeleton_skeletonblock",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/tournaments/[id]/loading.tsx",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "id_loading",
+      "target": "components_skeleton_skeletonmatchcard",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/tournaments/[id]/loading.tsx",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "id_loading",
+      "target": "id_loading_tournamentloading",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
       "source_file": "src/app/tournaments/[id]/page.tsx",
-      "source_location": "L4",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "src_app_tournaments_id_page_tsx_id_page",
+      "target": "components_bracket",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/tournaments/[id]/page.tsx",
+      "source_location": "L5",
       "weight": 1.0,
       "source": "src_app_tournaments_id_page_tsx_id_page",
       "target": "components_livescore",
@@ -2363,20 +4553,10 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/app/tournaments/[id]/page.tsx",
-      "source_location": "L4",
+      "source_location": "L5",
       "weight": 1.0,
       "source": "src_app_tournaments_id_page_tsx_id_page",
       "target": "components_livescore_livescore",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/app/tournaments/[id]/page.tsx",
-      "source_location": "L8",
-      "weight": 1.0,
-      "source": "src_app_tournaments_id_page_tsx_id_page",
-      "target": "id_page_tournamentpage",
       "confidence_score": 1.0
     },
     {
@@ -2384,10 +4564,134 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/app/tournaments/[id]/page.tsx",
-      "source_location": "L3",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "src_app_tournaments_id_page_tsx_id_page",
+      "target": "components_standings",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/tournaments/[id]/page.tsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "src_app_tournaments_id_page_tsx_id_page",
+      "target": "components_standings_standings",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/tournaments/[id]/page.tsx",
+      "source_location": "L80",
+      "weight": 1.0,
+      "source": "src_app_tournaments_id_page_tsx_id_page",
+      "target": "id_page_teaminitials",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/tournaments/[id]/page.tsx",
+      "source_location": "L93",
+      "weight": 1.0,
+      "source": "src_app_tournaments_id_page_tsx_id_page",
+      "target": "id_page_tournamentpage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/tournaments/[id]/page.tsx",
+      "source_location": "L31",
+      "weight": 1.0,
+      "source": "src_app_tournaments_id_page_tsx_id_page",
+      "target": "id_page_tournamentstatus",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/tournaments/[id]/page.tsx",
+      "source_location": "L34",
+      "weight": 1.0,
+      "source": "src_app_tournaments_id_page_tsx_id_page",
+      "target": "id_page_tournamentstatusbadge",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/tournaments/[id]/page.tsx",
+      "source_location": "L4",
       "weight": 1.0,
       "source": "src_app_tournaments_id_page_tsx_id_page",
       "target": "lib_prisma",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/tournaments/[id]/page.tsx",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "src_app_tournaments_id_page_tsx_id_page",
+      "target": "src_app_tournaments_id_page_tsx_id_page_generatemetadata",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/tournaments/[id]/page.tsx",
+      "source_location": "L32",
+      "weight": 1.0,
+      "source": "src_app_tournaments_id_page_tsx_id_page",
+      "target": "src_app_tournaments_id_page_tsx_id_page_matchstatus",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/tournaments/[id]/page.tsx",
+      "source_location": "L57",
+      "weight": 1.0,
+      "source": "src_app_tournaments_id_page_tsx_id_page",
+      "target": "src_app_tournaments_id_page_tsx_id_page_matchstatusbadge",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/tournaments/loading.tsx",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "tournaments_loading",
+      "target": "components_skeleton",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/tournaments/loading.tsx",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "tournaments_loading",
+      "target": "components_skeleton_skeletoncard",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/tournaments/loading.tsx",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "tournaments_loading",
+      "target": "tournaments_loading_tournamentsloading",
       "confidence_score": 1.0
     },
     {
@@ -2405,7 +4709,27 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/app/tournaments/page.tsx",
-      "source_location": "L6",
+      "source_location": "L31",
+      "weight": 1.0,
+      "source": "tournaments_page",
+      "target": "tournaments_page_emptystate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/tournaments/page.tsx",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "tournaments_page",
+      "target": "tournaments_page_statusbadge",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/tournaments/page.tsx",
+      "source_location": "L52",
       "weight": 1.0,
       "source": "tournaments_page",
       "target": "tournaments_page_tournamentspage",
@@ -2414,8 +4738,18 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
+      "source_file": "src/app/tournaments/page.tsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "tournaments_page",
+      "target": "tournaments_page_tournamentstatus",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
       "source_file": "src/components/AdminMatchCard.tsx",
-      "source_location": "L19",
+      "source_location": "L21",
       "weight": 1.0,
       "source": "components_adminmatchcard",
       "target": "components_adminmatchcard_adminmatchcard",
@@ -2425,7 +4759,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/components/AdminMatchCard.tsx",
-      "source_location": "L9",
+      "source_location": "L11",
       "weight": 1.0,
       "source": "components_adminmatchcard",
       "target": "components_adminmatchcard_match",
@@ -2435,7 +4769,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/components/AdminMatchCard.tsx",
-      "source_location": "L4",
+      "source_location": "L6",
       "weight": 1.0,
       "source": "components_adminmatchcard",
       "target": "components_adminmatchcard_team",
@@ -2444,11 +4778,183 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": "src/components/CreateTournamentForm.tsx",
+      "source_file": "src/components/AppShell.tsx",
+      "source_location": "L32",
+      "weight": 1.0,
+      "source": "components_appshell",
+      "target": "components_appshell_appshell",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/AppShell.tsx",
+      "source_location": "L24",
+      "weight": 1.0,
+      "source": "components_appshell",
+      "target": "components_appshell_bolticon",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/AppShell.tsx",
       "source_location": "L5",
+      "weight": 1.0,
+      "source": "components_appshell",
+      "target": "components_appshell_menuicon",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/AppShell.tsx",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "components_appshell",
+      "target": "components_sidebar",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/Bracket.tsx",
+      "source_location": "L51",
+      "weight": 1.0,
+      "source": "components_bracket",
+      "target": "components_bracket_bracket",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/Bracket.tsx",
+      "source_location": "L10",
+      "weight": 1.0,
+      "source": "components_bracket",
+      "target": "components_bracket_bracketmatch",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/Bracket.tsx",
+      "source_location": "L22",
+      "weight": 1.0,
+      "source": "components_bracket",
+      "target": "components_bracket_groupintorounds",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/Bracket.tsx",
+      "source_location": "L38",
+      "weight": 1.0,
+      "source": "components_bracket",
+      "target": "components_bracket_round_labels",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/Bracket.tsx",
+      "source_location": "L46",
+      "weight": 1.0,
+      "source": "components_bracket",
+      "target": "components_bracket_roundlabel",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/Bracket.tsx",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "components_bracket",
+      "target": "components_bracket_team",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/Bracket.tsx",
+      "source_location": "L57",
+      "weight": 1.0,
+      "source": "components_bracket_bracket",
+      "target": "components_bracket_groupintorounds",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/ChangePasswordForm.tsx",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "components_changepasswordform",
+      "target": "components_changepasswordform_changepasswordform",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/CreateMatchForm.tsx",
+      "source_location": "L10",
+      "weight": 1.0,
+      "source": "components_creatematchform",
+      "target": "components_creatematchform_creatematchform",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/CreateMatchForm.tsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "components_creatematchform",
+      "target": "components_creatematchform_cs2_maps",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/CreateMatchForm.tsx",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "components_creatematchform",
+      "target": "components_creatematchform_team",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/CreateTeamForm.tsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "components_createteamform",
+      "target": "components_createteamform_createteamform",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/CreateTournamentForm.tsx",
+      "source_location": "L6",
       "weight": 1.0,
       "source": "components_createtournamentform",
       "target": "components_createtournamentform_createtournamentform",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/DeleteTournamentButton.tsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "components_deletetournamentbutton",
+      "target": "components_deletetournamentbutton_deletetournamentbutton",
       "confidence_score": 1.0
     },
     {
@@ -2495,7 +5001,17 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/components/Navbar.tsx",
-      "source_location": "L5",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "components_navbar",
+      "target": "components_navbar_bolticon",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/Navbar.tsx",
+      "source_location": "L21",
       "weight": 1.0,
       "source": "components_navbar",
       "target": "components_navbar_navbar",
@@ -2509,6 +5025,226 @@
       "weight": 1.0,
       "source": "components_sessionprovider",
       "target": "components_sessionprovider_sessionprovider",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/Sidebar.tsx",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "components_sidebar",
+      "target": "components_sidebar_bolticon",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/Sidebar.tsx",
+      "source_location": "L56",
+      "weight": 1.0,
+      "source": "components_sidebar",
+      "target": "components_sidebar_chevronlefticon",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/Sidebar.tsx",
+      "source_location": "L64",
+      "weight": 1.0,
+      "source": "components_sidebar",
+      "target": "components_sidebar_chevronrighticon",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/Sidebar.tsx",
+      "source_location": "L81",
+      "weight": 1.0,
+      "source": "components_sidebar",
+      "target": "components_sidebar_cs2icon",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/Sidebar.tsx",
+      "source_location": "L46",
+      "weight": 1.0,
+      "source": "components_sidebar",
+      "target": "components_sidebar_loginicon",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/Sidebar.tsx",
+      "source_location": "L36",
+      "weight": 1.0,
+      "source": "components_sidebar",
+      "target": "components_sidebar_logouticon",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/Sidebar.tsx",
+      "source_location": "L100",
+      "weight": 1.0,
+      "source": "components_sidebar",
+      "target": "components_sidebar_navitem",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/Sidebar.tsx",
+      "source_location": "L91",
+      "weight": 1.0,
+      "source": "components_sidebar",
+      "target": "components_sidebar_navitemprops",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/Sidebar.tsx",
+      "source_location": "L28",
+      "weight": 1.0,
+      "source": "components_sidebar",
+      "target": "components_sidebar_shieldicon",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/Sidebar.tsx",
+      "source_location": "L131",
+      "weight": 1.0,
+      "source": "components_sidebar",
+      "target": "components_sidebar_sidebar",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/Sidebar.tsx",
+      "source_location": "L124",
+      "weight": 1.0,
+      "source": "components_sidebar",
+      "target": "components_sidebar_sidebarprops",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/Sidebar.tsx",
+      "source_location": "L15",
+      "weight": 1.0,
+      "source": "components_sidebar",
+      "target": "components_sidebar_trophyicon",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/Sidebar.tsx",
+      "source_location": "L72",
+      "weight": 1.0,
+      "source": "components_sidebar",
+      "target": "components_sidebar_xicon",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/Skeleton.tsx",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "components_skeleton",
+      "target": "components_skeleton_skeletonblock",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/Skeleton.tsx",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "components_skeleton",
+      "target": "components_skeleton_skeletoncard",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/Skeleton.tsx",
+      "source_location": "L18",
+      "weight": 1.0,
+      "source": "components_skeleton",
+      "target": "components_skeleton_skeletonmatchcard",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/Standings.tsx",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "components_standings",
+      "target": "components_standings_match",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/Standings.tsx",
+      "source_location": "L16",
+      "weight": 1.0,
+      "source": "components_standings",
+      "target": "components_standings_standings",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/Standings.tsx",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "components_standings",
+      "target": "components_standings_team",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/TeamRoster.tsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "components_teamroster",
+      "target": "components_teamroster_player",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/TeamRoster.tsx",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "components_teamroster",
+      "target": "components_teamroster_teamroster",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/TournamentStatusControl.tsx",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "components_tournamentstatuscontrol",
+      "target": "components_tournamentstatuscontrol_tournamentstatuscontrol",
       "confidence_score": 1.0
     },
     {
@@ -2550,6 +5286,26 @@
       "weight": 1.0,
       "source": "lib_prisma",
       "target": "lib_prisma_globalforprisma",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/ratelimit.ts",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "lib_ratelimit",
+      "target": "lib_ratelimit_ratelimit",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/ratelimit.ts",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "lib_ratelimit",
+      "target": "lib_ratelimit_requests",
       "confidence_score": 1.0
     },
     {
@@ -2773,6 +5529,16 @@
       "target": "agents_md"
     },
     {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "AGENTS.md",
+      "source_location": "line 3-4",
+      "weight": 1.0,
+      "source": "nextjs_breaking_changes_rationale",
+      "target": "nextjs_framework"
+    },
+    {
       "relation": "references",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
@@ -2843,16 +5609,6 @@
       "target": "cupslog_project"
     },
     {
-      "relation": "rationale_for",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "AGENTS.md",
-      "source_location": "line 3-4",
-      "weight": 1.0,
-      "source": "nextjs_breaking_changes_rationale",
-      "target": "nextjs_framework"
-    },
-    {
       "relation": "conceptually_related_to",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
@@ -2891,6 +5647,415 @@
       "weight": 0.9,
       "source": "public_vercel_svg",
       "target": "vercel_platform"
+    },
+    {
+      "relation": "CONTAINS",
+      "confidence": "EXTRACTED",
+      "properties": {},
+      "source_file": "",
+      "source": "prisma_driver_adapter_implementation",
+      "target": "implementation_checklist",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "DESCRIBES",
+      "confidence": "EXTRACTED",
+      "properties": {},
+      "source_file": "",
+      "source": "prisma_driver_adapter_implementation",
+      "target": "mysql_mariadb_support",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "DESCRIBES",
+      "confidence": "EXTRACTED",
+      "properties": {},
+      "source_file": "",
+      "source": "prisma_driver_adapter_implementation",
+      "target": "postgresql_support",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "DESCRIBES",
+      "confidence": "EXTRACTED",
+      "properties": {},
+      "source_file": "",
+      "source": "prisma_driver_adapter_implementation",
+      "target": "prisma_v7",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "DESCRIBES",
+      "confidence": "EXTRACTED",
+      "properties": {},
+      "source_file": "",
+      "source": "prisma_driver_adapter_implementation",
+      "target": "sql_driver_adapter",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "DESCRIBES",
+      "confidence": "EXTRACTED",
+      "properties": {},
+      "source_file": "",
+      "source": "prisma_driver_adapter_implementation",
+      "target": "sqlite_support",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "USES",
+      "confidence": "EXTRACTED",
+      "properties": {},
+      "source_file": "",
+      "source": "prisma_driver_adapter_implementation",
+      "target": "typescript",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "USES",
+      "confidence": "EXTRACTED",
+      "properties": {},
+      "source_file": "",
+      "source": "e2e_testing",
+      "target": "prisma_client",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "DEPENDS_ON",
+      "confidence": "EXTRACTED",
+      "properties": {
+        "note": "requires adapter factory"
+      },
+      "source_file": "",
+      "source": "prisma_client",
+      "target": "sql_migration_aware_driver_adapter_factory",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "CONTAINS",
+      "confidence": "EXTRACTED",
+      "properties": {},
+      "source_file": "",
+      "source": "prisma_driver_adapter_utils",
+      "target": "column_type_enum",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "CONTAINS",
+      "confidence": "EXTRACTED",
+      "properties": {},
+      "source_file": "",
+      "source": "prisma_driver_adapter_utils",
+      "target": "driver_adapter_error",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "CONTAINS",
+      "confidence": "EXTRACTED",
+      "properties": {},
+      "source_file": "",
+      "source": "prisma_driver_adapter_utils",
+      "target": "sql_driver_adapter",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "CONTAINS",
+      "confidence": "EXTRACTED",
+      "properties": {},
+      "source_file": "",
+      "source": "prisma_driver_adapter_utils",
+      "target": "sql_migration_aware_driver_adapter_factory",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "CONTAINS",
+      "confidence": "EXTRACTED",
+      "properties": {},
+      "source_file": "",
+      "source": "prisma_driver_adapter_utils",
+      "target": "transaction",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "IMPLEMENTS",
+      "confidence": "EXTRACTED",
+      "properties": {},
+      "source_file": "",
+      "source": "factory_class",
+      "target": "sql_migration_aware_driver_adapter_factory",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "IMPLEMENTS",
+      "confidence": "EXTRACTED",
+      "properties": {
+        "methods": [
+          "connect()",
+          "connectToShadowDb()"
+        ]
+      },
+      "source_file": "",
+      "source": "sql_migration_aware_driver_adapter_factory",
+      "target": "sql_driver_adapter",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "IMPLEMENTS",
+      "confidence": "EXTRACTED",
+      "properties": {},
+      "source_file": "",
+      "source": "adapter_class",
+      "target": "sql_driver_adapter",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "CALLS",
+      "confidence": "EXTRACTED",
+      "properties": {
+        "via": "getConnectionInfo()"
+      },
+      "source_file": "",
+      "source": "sql_driver_adapter",
+      "target": "connection_info",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "DEPENDS_ON",
+      "confidence": "EXTRACTED",
+      "properties": {
+        "note": "input to queryRaw/executeRaw"
+      },
+      "source_file": "",
+      "source": "sql_driver_adapter",
+      "target": "sql_query",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "EXTENDS",
+      "confidence": "EXTRACTED",
+      "properties": {},
+      "source_file": "",
+      "source": "sql_driver_adapter",
+      "target": "sql_queryable",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "CALLS",
+      "confidence": "EXTRACTED",
+      "properties": {
+        "via": "queryRaw() returns SqlResultSet"
+      },
+      "source_file": "",
+      "source": "sql_driver_adapter",
+      "target": "sql_result_set",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "CALLS",
+      "confidence": "EXTRACTED",
+      "properties": {
+        "via": "startTransaction()"
+      },
+      "source_file": "",
+      "source": "sql_driver_adapter",
+      "target": "transaction",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "IMPLEMENTS",
+      "confidence": "EXTRACTED",
+      "properties": {},
+      "source_file": "",
+      "source": "queryable_base_class",
+      "target": "sql_queryable",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "EXTENDS",
+      "confidence": "EXTRACTED",
+      "properties": {},
+      "source_file": "",
+      "source": "transaction",
+      "target": "sql_queryable",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "CONTAINS",
+      "confidence": "EXTRACTED",
+      "properties": {},
+      "source_file": "",
+      "source": "transaction",
+      "target": "transaction_options",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "IMPLEMENTS",
+      "confidence": "EXTRACTED",
+      "properties": {},
+      "source_file": "",
+      "source": "transaction_class",
+      "target": "transaction",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "CONTAINS",
+      "confidence": "EXTRACTED",
+      "properties": {},
+      "source_file": "",
+      "source": "sql_query",
+      "target": "arg_type",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "USES",
+      "confidence": "EXTRACTED",
+      "properties": {},
+      "source_file": "",
+      "source": "sql_result_set",
+      "target": "column_type_enum",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "USES",
+      "confidence": "EXTRACTED",
+      "properties": {},
+      "source_file": "",
+      "source": "column_type_inference",
+      "target": "column_type_enum",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "CONTAINS",
+      "confidence": "EXTRACTED",
+      "properties": {},
+      "source_file": "",
+      "source": "driver_adapter_error",
+      "target": "mapped_error",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "USES",
+      "confidence": "EXTRACTED",
+      "properties": {
+        "via": "onError()"
+      },
+      "source_file": "",
+      "source": "queryable_base_class",
+      "target": "driver_adapter_error",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "USES",
+      "confidence": "EXTRACTED",
+      "properties": {
+        "via": "startTransaction(isolationLevel?)"
+      },
+      "source_file": "",
+      "source": "adapter_class",
+      "target": "isolation_level",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "EXTENDS",
+      "confidence": "EXTRACTED",
+      "properties": {},
+      "source_file": "",
+      "source": "adapter_class",
+      "target": "queryable_base_class",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "USES",
+      "confidence": "EXTRACTED",
+      "properties": {
+        "via": "mapArg()"
+      },
+      "source_file": "",
+      "source": "queryable_base_class",
+      "target": "argument_mapping",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "USES",
+      "confidence": "EXTRACTED",
+      "properties": {
+        "via": "mapRow()"
+      },
+      "source_file": "",
+      "source": "queryable_base_class",
+      "target": "row_mapping",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "EXTENDS",
+      "confidence": "EXTRACTED",
+      "properties": {},
+      "source_file": "",
+      "source": "transaction_class",
+      "target": "queryable_base_class",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "CALLS",
+      "confidence": "EXTRACTED",
+      "properties": {
+        "via": "startTransaction()"
+      },
+      "source_file": "",
+      "source": "adapter_class",
+      "target": "transaction_class",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "USES",
+      "confidence": "EXTRACTED",
+      "properties": {
+        "note": "nested transactions depth > 1"
+      },
+      "source_file": "",
+      "source": "adapter_class",
+      "target": "savepoint",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "CALLS",
+      "confidence": "EXTRACTED",
+      "properties": {
+        "via": "connect() and connectToShadowDb()"
+      },
+      "source_file": "",
+      "source": "factory_class",
+      "target": "adapter_class",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "RELATED_TO",
+      "confidence": "EXTRACTED",
+      "properties": {
+        "note": "tests adapter directly without PrismaClient"
+      },
+      "source_file": "",
+      "source": "unit_testing",
+      "target": "adapter_class",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "USES",
+      "confidence": "EXTRACTED",
+      "properties": {},
+      "source_file": "",
+      "source": "e2e_testing",
+      "target": "factory_class",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "RELATED_TO",
+      "confidence": "EXTRACTED",
+      "properties": {},
+      "source_file": "",
+      "source": "postgresql_support",
+      "target": "pgbouncer",
+      "confidence_score": 1.0
     }
   ],
   "hyperedges": [
@@ -2919,6 +6084,37 @@
       "confidence": "INFERRED",
       "confidence_score": 0.75,
       "source_file": "public/next.svg"
+    },
+    {
+      "id": "transaction_lifecycle",
+      "label": "Transaction Lifecycle Protocol",
+      "nodes": [
+        "transaction",
+        "adapter_class",
+        "sql_driver_adapter",
+        "savepoint"
+      ],
+      "relation": "IMPLEMENTS",
+      "confidence": "EXTRACTED",
+      "properties": {
+        "description": "BEGIN at depth 1, SAVEPOINT sp_N at depth>1; commit/rollback are lifecycle hooks only, SQL sent via executeRaw"
+      }
+    },
+    {
+      "id": "conversion_pipeline",
+      "label": "Data Conversion Pipeline",
+      "nodes": [
+        "argument_mapping",
+        "row_mapping",
+        "column_type_inference",
+        "column_type_enum"
+      ],
+      "relation": "RELATED_TO",
+      "confidence": "INFERRED",
+      "properties": {
+        "description": "mapArg converts input, mapRow converts output, inferColumnType handles missing metadata"
+      }
     }
-  ]
+  ],
+  "built_at_commit": "f72a0814ad4c89325f53846f006bb28e69bd7fff"
 }
